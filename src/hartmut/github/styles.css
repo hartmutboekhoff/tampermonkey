@@ -31,3 +31,10 @@ div.file-header .Link--primary {
   font-size: 150%;
   font-weight: bold;
 }
+
+form[action$="/cleanup"] > div > div > button  {
+  @danger-button;
+}
+form[action$="/undo_cleanup"] > button.pull-request-ref-restore-text {
+  @neutral2-button;
+}

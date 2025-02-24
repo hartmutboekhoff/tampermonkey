@@ -4,6 +4,7 @@
   --border-color: #226;
   --editor-border-color: #dc0;
   --editor-background-color: #ffd888;
+  --editor-dark-background-color: #db6;
   --legend-background-color: #aac;
   --legend-light-background-color: #dde;
   --legend-dark-background-color: #779;
@@ -13,13 +14,23 @@
   --tile-dark-background-color: #aac;
   --parent-tile-background-frame: linear-gradient(to right, var(--tile-background-color) 0 10px, transparent 10px), linear-gradient(to bottom, var(--tile-background-color) 0 10px, transparent 10px);
   --parent-tile-dark-background-frame: linear-gradient(to right, var(--tile-dark-background-color) 0 10px, transparent 10px), linear-gradient(to bottom, var(--tile-dark-background-color) 0 10px, transparent 10px);
+  
+  --special-border-color: #0d8;
+  --special-background-color: #0d8;
+  --special-light-background-color: #4fa;
+  --special-dark-background-color: #0b5;
+
+}
+
+field-outline {
+  outline: 3px solid var(--border-color);
+  outline-offset: 2px;
+  border-radius: 1px;
 }
 
 /* Beschreibung */
 div[data-editor-container-id="issue-description-editor"] {
-  outline: 4px solid var(--border-color);
-  outline-offset: 3px;
-  border-radius: 5px;
+  @field-outline;
 }
 
 /*zusatzfeld */   div:has(>div>div>div[data-component-selector="jira.issue-view.common.inline-edit.compact-wrapper-control"]),
@@ -27,9 +38,7 @@ div[data-editor-container-id="issue-description-editor"] {
 /*Verknüpfungen*/ div:has(>div>div>span[data-testid="issue.views.issue-base.content.issue-links.add.add-button.right-side-container"]),
 /*Subtickets */   div:has(>div[data-testid="issue.issue-view.views.common.child-issues-panel.issues-container"]),
 /* kommentare */  div[data-testid="issue.activity.comments-list"] > div {
-  outline: 4px solid var(--border-color);
-  outline-offset: 3px;
-  border-radius: 5px;
+  @field-outline;
   margin: 2em 0;
 }
 
@@ -49,9 +58,11 @@ div[data-testid="issue.activity.comments-list"] > div h3 {
 
 
 /*Kommentareingabe*/ span:has(> div > div > div[data-testid="issue.activity.comment"]) {
-	outline: 4px solid var(--editor-border-color);
-	outline-offset: 3px;
-	border-radius: 5px;
+  @field-outline;
+  outline-color: var(--editor-border-color);
+	_outline: 4px solid var(--editor-border-color);
+	_outline-offset: 3px;
+	_border-radius: 3px;
 	margin: 2em 0 5em 0;
 	display: block;
 	padding-left: .5em;
@@ -135,15 +146,58 @@ div[data-testid="jql-builder"] {
   background-color: #fc0;
   padding: 1em 1em 0;
   border: 5px solid #860;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 div[data-testid="issue.views.issue-base.context.labels"]:has(div[data-testid="issue-field-heading-styled-field-heading.labels"]) {
-  outline: 4px solid var(--border-color);
-  outline-ofset: 3px;
-  border-radius: 3px;
+  @field-outline;
+  outline-color: var(--special-border-color);
   padding: .2em;
 } 
 div[data-testid="issue.views.issue-base.context.labels"] div[data-testid="issue-field-heading-styled-field-heading.labels"]:has(>h2) {
-  background-color: var(--legend-background-color);
+  _background-color: var(--legend-background-color);
+  background-color: var(--special-dark-background-color);
 } 
+
+div[data-testid="issue.views.field.checkbox-inline-edit.customfield_10201"] {
+  background-color: var(--editor-background-color);
+}
+div[data-testid="issue.views.field.checkbox-inline-edit.customfield_10201"] div:has(>h2) {
+  background-color: var(--editor-dark-background-color);
+  padding-left: .5em;
+  margin-right: .5em;
+}
+
+div:has(>div>div[data-testid$=".swimlane.swimlane-content"]) {
+   @row;
+   background-color: #ea4;
+}
+
+div[data-testid$=".column-header.header.column-header-container"]  {
+  background-color: var(--editor-background-color) !important;
+  border: 2px solid var(--border-color);
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+}
+
+
+/* Ticket verschieben (Massenverarbeitung) */
+div#stepped-process input#next_submit {
+  @neutral2-button;
+}
+div#stepped-process input#move_submit {
+  @ok-button;
+}
+
+
+div[data-testid="software-board.board"] div[data-testid="software-board.board-area"] section ul li > div[data-testid] {
+  box-shadow: 0 0 4px 2px #66c;
+}
+
+
+/*--_xexnhp*/
+div[data-testid="software-board.board"] div[data-testid="software-board.board-area"] section ul li >  div[data-testid] > div[id^="card-STQUEST-"] div[class*="_cardColorInner"] {
+  width: 12px;
+  left: -3px;
+}
+
