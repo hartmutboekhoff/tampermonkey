@@ -750,7 +750,21 @@
         this.#timestamps.splice(0,ix-1);
       }
     }
-    add(selector) {
+    add(element) {
+      function getCssPath(e) {
+        let selector = '';
+        do {
+          selector = e.nodeName 
+                     + (e.id?'#'+e.id.replace(/\./g,'\\.'):'') 
+                     + (e.className?'.'+e.className.replace(/\s+/g,'.'):'') 
+                     + (Object.entries(e.dataset).map(([key,value])=>`[data-${key.replace(/([A-Z])/,'-\L0')}="${value}"]`).join(''))
+                     + ' ' + selector;
+          e = e.parentNode;
+        } while( e != undefined && e.nodeName != 'BODY' );
+        return selector;
+      }      
+      
+      const selector = getCssPath(element);
       this.cleanup();
       const ix = this.indexOf(selector);
       if( ix >= 0 ) {
@@ -904,16 +918,7 @@
     		this.read(sel.toString());
     }
     #printCssPath(ev) {
-      function getCssPath(e) {
-        let selector = '';
-        do {
-          selector = e.nodeName + (e.id?'#'+e.id.replace(/\./g,'\\.'):'') + (e.className?'.'+e.className.replace(/\s+/g,'.'):'') + ' ' + selector;
-          e = e.parentNode;
-        } while( e != undefined && e.nodeName != 'BODY' );
-        return selector;
-      }
-
-      this.#cssPathHelper.add(getCssPath(ev.target))
+      this.#cssPathHelper.add(ev.target)
       console.log(this.#cssPathHelper.getCompact());
     }
     #readOutElement(ev) {

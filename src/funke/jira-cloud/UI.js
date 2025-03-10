@@ -44,6 +44,9 @@
       exclude: ['img', 'div[role]']
     });
 
+    window.registerForReadOut('div[data-testid="issue-field-inline-edit-read-view-container.ui.container"]',{
+      exclude: 'button'
+    });
 
 
 

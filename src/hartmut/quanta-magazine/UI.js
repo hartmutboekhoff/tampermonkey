@@ -16,7 +16,8 @@
     });
     window.registerForReadOut('.hero-title,.hero__card,.card', {
       language: 'en-US',
-      exclude: ['img']
+      extract: node=>node.querySelectorAll('.card__content'),
+      exclude: ['img', '.card__actions']
     });
     
 

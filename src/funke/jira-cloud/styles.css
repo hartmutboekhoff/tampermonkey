@@ -2,6 +2,7 @@
 
 :root {
   --border-color: #226;
+  --alternative-border-color: #2aa;
   --editor-border-color: #dc0;
   --editor-background-color: #ffd888;
   --legend-background-color: #aac;
@@ -17,24 +18,35 @@
 
 /* Beschreibung */
 div[data-editor-container-id="issue-description-editor"] {
-  outline: 4px solid var(--border-color);
+  outline: 4px solid var(--editor-border-color);
   outline-offset: 3px;
   border-radius: 5px;
 }
 
-/*zusatzfeld */   div:has(>div>div>div[data-component-selector="jira.issue-view.common.inline-edit.compact-wrapper-control"]),
+/*zusatzfeld */   div:has(>div>div>div[data-component-selector="jira.issue-view.common.inline-edit.compact-wrapper-control"]), 
 /*Anhänge*/       div:has(>div[data-testid="issue.views.issue-base.content.attachment.panel"]),
 /*Verknüpfungen*/ div:has(>div>div>span[data-testid="issue.views.issue-base.content.issue-links.add.add-button.right-side-container"]),
 /*Subtickets */   div:has(>div[data-testid="issue.issue-view.views.common.child-issues-panel.issues-container"]),
-/* kommentare */  div[data-testid="issue.activity.comments-list"] > div {
+/*Komponenten */  div:has(>div[data-testid="issue.views.field.select.common.select-inline-edit.components"]),
+/*kommentare */   div[data-testid="issue.activity.comments-list"] > div {
   outline: 4px solid var(--border-color);
   outline-offset: 3px;
   border-radius: 5px;
   margin: 2em 0;
 }
 
+/*Beschreibung */    div[data-editor-container-id="issue-description-editor"] {
+  outline: 4px solid var(--alternative-border-color) !important; 
+  outline-offset: 3px;
+  border-radius: 5px;
+  margin: 2em 0;
+
+}
+
+
 /* Überschriften */
-/*Zusatzfelder    div:has(>div>div>div[data-component-selector="jira.issue-view.common.inline-edit.compact-wrapper-control"])>div:first-child:has(h2),*/
+/*Zusatzfelder   */
+div:has(>div>div>div[data-component-selector="jira.issue-view.common.inline-edit.compact-wrapper-control"]) > div:first-child:has(h2),
 div:has(>div>div>div[data-component-selector="jira.issue-view.common.inline-edit.compact-wrapper-control"]) > div:has(>h2),
 div:has(>div>div>div[data-component-selector="jira.issue-view.common.inline-edit.compact-wrapper-control"]) > div:has(>div>h2),
 /*Anhänge*/         div:has(>div[data-testid="issue.views.issue-base.content.attachment.panel"]) div div:has(h2),
@@ -147,3 +159,24 @@ div[data-testid="issue.views.issue-base.context.labels"]:has(div[data-testid="is
 div[data-testid="issue.views.issue-base.context.labels"] div[data-testid="issue-field-heading-styled-field-heading.labels"]:has(>h2) {
   background-color: var(--legend-background-color);
 } 
+
+
+/* cards on kanban board */
+._16qssefo {
+	box-shadow: 1px 1px 3px 3px blue !important;
+}
+/* board-header */
+div[data-testid="software-board.board"]>div:first-child>div:first-child>div>div:last-child {
+	_background-color: var(--legend-light-background-color);
+	position: relative;
+	top: -55px;
+	left: 150px;
+	width: 70%;
+	height: 0;
+}
+
+
+li div.yse7za_cardColorInner {
+	width: 15px;
+	left: -3px;
+}
