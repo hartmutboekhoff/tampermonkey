@@ -43,6 +43,10 @@
     window.registerForReadOut('li[data-testid="issue-navigator.ui.issue-results.detail-view.card-list.card.list-item"]', {
       exclude: ['img', 'div[role]']
     });
+    window.registerForReadOut('div[data-vc="issue-table-main-container"] table tr[data-testid="native-issue-table.ui.issue-row"] td', {
+      exclude: ['img'],
+      useAriaLabels: true,
+    });
 
 
 
