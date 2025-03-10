@@ -1,6 +1,86 @@
 (function() {
   const DOUBLE_KEY_PRESS = 500;
   const QUEUE_CLEANUP_DELAY = 750;
+  const MONTHNAME_MAP = {
+    'januar': 1, 
+    'january': 1,
+    'jan': 1,
+    'februar': 2,
+    'february': 2,
+    'feb': 2,
+    'märz': 3,
+    'm&Auml;Rz': 3,
+    'march': 3,
+    'mär': 3,
+    'm&Auml;R': 3,
+    'mar': 3,
+    'april': 4,
+    'apr': 4,
+    'mai': 5,
+    'mey': 5,
+    'juni': 6,
+    'june': 6,
+    'juno': 6,
+    'jun': 6,
+    'juli': 7,
+    'july': 7,
+    'jul': 7,
+    'august': 8,
+    'aug': 8,
+    'september': 9,
+    'sep': 9,
+    'oktober': 10,
+    'october': 10,
+    'okt': 10,
+    'oct': 10,
+    'november': 11,
+    'nov': 11,
+    'dezember': 12,
+    'december': 12,
+    'dez': 12,
+    'dec': 12,
+  };
+  const DAYNAME_MAP = {
+    'sonntag': 0,
+    'sunday': 0,
+    'son': 0,
+    'sun': 0,
+    'so': 0,
+    'su': 0,
+    'montag': 1,
+    'monday': 1,
+    'mon': 1,
+    'mo': 1,
+    'dienstag': 2,
+    'tuesday': 2,
+    'die': 2,
+    'thu': 2,
+    'di': 2,
+    'mittwoch': 3,
+    'wednesday': 3,
+    'mit': 3,
+    'wed': 3,
+    'mi': 3,
+    'we': 3,
+    'donnerstag': 4,
+    'thursday': 4,
+    'don': 4,
+    'thu': 4,
+    'do': 4,
+    'th': 4,
+    'freitag': 5,
+    'friday': 5,
+    'fre': 5,
+    'fri': 5,
+    'fr': 5,
+    'samstag': 6,
+    'sonnabend': 6,
+    'saturday': 6,
+    'sam': 6,
+    'sat': 6,
+    'sa': 6,
+  };
+
 
   const Format = {
     date: function(dt) {
@@ -339,11 +419,17 @@
     
     convertDates() {
       function toDate({year,month,day,hour,minutes,seconds,ampm}) {
+        if( typeof month == 'string' )
+          month = MONTHNAME_MAP[month.toLowerCase()] ?? month;
+
         return new Date(year, month-1, day, hour==undefined? 0 : ampm=='PM'? +hour+12 : hour, minutes??0, seconds??0);
       }
 			const dateRXs = [
 				/*en*/ /(?<month>\d{1,2})\/(?<day>\d{1,2})\/(?<year>\d{4}),? (?<hour>\d{1,2}):(?<minutes>\d{2})(?::(?<seconds>\d{2}))? (?<ampm>AM|PM)/g,
 				/*de*/ /(?<day>\d{1,2})\.(?<month>\d{1,2})\.(?<year>\d{4}),? (?<hour>\d{1,2}):(?<minutes>\d{2})(?::(?<seconds>\d{2}))?/g,
+				/*de (text)*/ /(?<day>\d{1,2})\.\s+(?<month>\w+)\s+(?<year>\d{4}),?\s+(um\s+)?(?<hour>\d{1,2}):(?<minutes>\d{2})(?::(?<seconds>\d{2}))?/g,
+				/*en (text)*/ /(?<month>\w+)\s+(?<day>\d{1,2}),\s+(?<year>\d{4})\s(at\s)?(?<hour>\d{1,2}):(?<minutes>\d{2})(?::(?<seconds>\d{2}))? (?<ampm>AM|PM)/g,
+				//...(this.options.customDatePatterns ?? []),
 			];
 
 			dateRXs.forEach(rx=>this.#extractedData.replace(rx,(...args)=>Format.niceDateTime(toDate(args.pop()))));
@@ -646,10 +732,12 @@
       u.convertDates();
       u.convertUrls();
       k ??= e.id ?? e.className ?? e.nodeName;
-      if( u.utterances.length == 0 )
-        this.#pushText('Kein Text.', k, options, e);
-      else
+      if( u.utterances.length > 0 )
         this.#pushUtterances(u.utterances, k, e);
+      else if( options.useAriaLabels !== false )
+        this.#pushText([...e.querySelectorAll('[aria-label]')].map(ce=>ce.ariaLabel).join(' '), k, options, e);
+      else
+        this.#pushText('Kein Text.', k, options, e);
     }
     read(v,options) {
       if( this.#current?.element == v ) 
@@ -757,15 +845,15 @@
           selector = e.nodeName 
                      + (e.id?'#'+e.id.replace(/\./g,'\\.'):'') 
                      + (e.className?'.'+e.className.replace(/\s+/g,'.'):'') 
-                     + (Object.entries(e.dataset).map(([key,value])=>`[data-${key.replace(/([A-Z])/,'-\L0')}="${value}"]`).join(''))
+                    + (Object.entries(e.dataset).map(([key, value])=>`[data-${key.replaceAll(/[A-Z]/g, m=>'-'+m.toLowerCase())}="${value}"]`).join(''))
                      + ' ' + selector;
           e = e.parentNode;
         } while( e != undefined && e.nodeName != 'BODY' );
         return selector;
-      }      
-      
-      const selector = getCssPath(element);
+      }
+
       this.cleanup();
+      const selector = getCssPath(element);
       const ix = this.indexOf(selector);
       if( ix >= 0 ) {
         super.splice(ix,1);

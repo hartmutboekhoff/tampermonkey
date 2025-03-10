@@ -137,7 +137,7 @@ cue-list-item-versions:first-child div.version-item.selected:has(cue-state div.s
 cue-list-item-versions:first-child div.version-item:has(cue-state div.draft-published),
 cue-list-item-versions:first-child div.version-item.selected:has(cue-state div.draft-published) {
   background-color: red;
-  animation: blinker 1.5s step-end infinite;
+  animation: pulsar 1.5s step-end infinite;
 }
 
 
@@ -146,8 +146,29 @@ cue-relation-story-element-editor {
   box-shadow: 4px 4px 4px blue;
 }
 
+input#published[type="button"][data-testid="online-media-editor-publish-button"] {
+  background-color: green;
+  color: white;
+  animation: pulsar 1.5s step-end infinite;
+  z-index: 999;
+}
+
+
+@keyframes pulsar {
+  50% {
+    transform: scale(120%);
+    filter: brightness(1.5) saturate(.9);
+  }
+};
+
 @keyframes blinker {
   50% {
     background-color: yellow;
   }
-}
+};
+
+
+
+
+
+ 
