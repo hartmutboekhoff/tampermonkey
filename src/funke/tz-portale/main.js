@@ -4,7 +4,6 @@
 // @namespace    http://hartmut-boekhoff.de
 // @description  Printout Debug-Info for Funke News
 // @author       Hartmut Boekhoff
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=waz.de
 
 // @match        https://www.waz.de
 // @match        https://www.waz.de/*
@@ -46,9 +45,10 @@
 // @require         http://localhost:3000/common/styles.js
 // @require         http://localhost:3000/common/KeyHandler.js
 // @require         http://localhost:3000/common/readout.js
+// @require         http://localhost:3000/common/mutationHandler.js
 
-// @require         http://localhost:3000/funke/tz-portale/stats.js
-// @require         http://localhost:3000/funke/tz-portale/info.js
+
+// @require         http://localhost:3000/funke/tz-portale/UI.js
 
 // ==/UserScript==
 

@@ -86,4 +86,21 @@ div#stats-overlay table tr.highlight {
   border-color: #8d8;
 }
 
+body.debug-compact #pageInfosContainer .show-type,
+body.debug-compact .debug-component .show-type {
+  cursor: pointer;
+}
 
+body.debug-compact #pageInfosContainer:not(.show-anyway)>:nth-child(n+2),
+body.debug-compact .debug-component-variant-visible:not(.show-anyway)>:nth-child(n+3),
+body.debug-compact .debug-component-variant-hidden:not(.show-anyway)>:nth-child(n+2) {
+  display:none !important;
+}
+
+
+#pageInfosContainer {
+  border-color: #77d !important;
+}
+#pageInfosContainer>.show-type {
+  background-color: #77d !important;
+}

@@ -38,3 +38,16 @@ form[action$="/cleanup"] > div > div > button  {
 form[action$="/undo_cleanup"] > button.pull-request-ref-restore-text {
   @neutral2-button;
 }
+
+.range-editor {
+  outline: 3px solid #b00;
+  outline-offset: 2px;
+  background-color: rgba(180,0,0,.2);
+}
+
+.range-cross-repo-pair summary {
+  @neutral2-button;
+}
+.range-cross-repo-pair #base-ref-selector summary {
+  background-color: #fd4;
+}
