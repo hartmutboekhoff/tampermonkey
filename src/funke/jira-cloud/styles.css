@@ -236,3 +236,7 @@ li div.yse7za_cardColorInner {
 	width: 15px;
 	left: -3px;
 }
+
+div[data-testid="smart-links-container"] {
+  display:none !important;
+}

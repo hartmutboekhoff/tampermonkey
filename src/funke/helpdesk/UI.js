@@ -206,7 +206,7 @@
       	runOnLoad: true,
       	callback: function(e){
       	  addAssignToButton('assign-to-current-user', 'mir zuweisen', 'FT_Support_TZ-Digital', 'Boekhoff, Hartmut');
-      	  addAssignToButton('assign-to-digital_frontend', 'Digital Frontend', 'Digital_Frontend');
+      	  addAssignToButton('assign-to-digital_products', 'Digital Products', 'Digital_Products');
 /*
       		if( document.getElementById('assign-to-current-user') != undefined ) return;
       		const outerDiv = document.createElement('div');

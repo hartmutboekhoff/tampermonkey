@@ -152,6 +152,12 @@ input#published[type="button"][data-testid="online-media-editor-publish-button"]
   animation: pulsar 1.5s step-end infinite;
   z-index: 999;
 }
+cue-field[data-test-value="com.escenic.uniqueName"] textarea {
+  background-color: rgba(255, 221, 0, .2);
+  _outline: 3px solid #fd0;
+  _outline-offset: 4px;
+  box-shadow: 1px 1px 5px 5px #ec0;
+}
 
 
 @keyframes pulsar {
@@ -159,16 +165,10 @@ input#published[type="button"][data-testid="online-media-editor-publish-button"]
     transform: scale(120%);
     filter: brightness(1.5) saturate(.9);
   }
-};
+}
 
 @keyframes blinker {
   50% {
     background-color: yellow;
   }
-};
-
-
-
-
-
- 
+}

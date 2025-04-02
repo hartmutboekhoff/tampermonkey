@@ -94,6 +94,10 @@
     window.onMutation('cue-form-datetime#publish-date,cue-form-datetime#unpublish-date', {
       callback: highlightActiveDates,
     });
+    window.onMutation('cue-field[data-test-value="com.escenic.uniqueName"] textarea', {
+      callback:el=>(el.focus(),el.select()),
+      runOnLoad: true,
+    });
   
   
     // ================================================

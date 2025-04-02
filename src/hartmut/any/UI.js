@@ -10,7 +10,7 @@
     // ================================================
     console.log('initializing read-out elements');
     //window.registerForReadOut('selector');
-    window.registerForReadOut('h1,h2,h3,h4,p,ul,ol,label,button',{language});
+    window.registerForReadOut('h1,h2,h3,h4,p,ul,ol,label,button,th,td,article',{language});
     window.registerForReadOut('figure',{
       language,
       extract: node=>node.getElementsByTagName('figcaption'),

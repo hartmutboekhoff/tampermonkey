@@ -1,31 +1,35 @@
 (function(){
   window.addEventListener('load',()=>{
-    const language = document.getElementsByTagName('html')[0].lang;
+
+
+    function toggleBodyClass(c) {
+      document.body.classList.toggle(c);
+    }
     
     // ================================================
     console.log('initializing shortcut-keys');
     //window.addKeyHandler('Space',ev=>alert('key pressed'));
-  
+    window.addKeyHandler('Ctrl+Space',ev=>{
+      console.log('toggle debug-compact');
+      document.body.classList.toggle('debug-compact')
+      console.log('done toggle debug-compact');
+    });
   
     // ================================================
     console.log('initializing read-out elements');
     //window.registerForReadOut('selector');
-    window.registerForReadOut('code',{
-      language:'en-US',
-      replace: [
-        {pattern: /&&?/, replacement: ' and '},
-        {pattern: /\|\|?/, replacement: ' or '},
-        {pattern: /===?/, replacement: ' equals '},
-        {pattern: '=', replacement: ' is: '},
-        {pattern: '.', replacement: ' dot '},
-      ]
-    });
+    
 
     // ================================================
     console.log('initializing mutation-reactions');
     //window.onMutation('selector', reaction);
-  
-  
+    window.onMutation('#pageInfosContainer .show-type, .debug-component .show-type', {
+      listeners: {
+        click: ev=>ev.target.closest('#pageInfosContainer, .debug-component')?.classList.toggle('show-anyway'),
+      },
+      runOnLoad: true
+    });
+
     // ================================================
 
 

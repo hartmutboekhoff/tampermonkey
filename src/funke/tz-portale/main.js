@@ -5,30 +5,30 @@
 // @description  Printout Debug-Info for Funke News
 // @author       Hartmut Boekhoff
 
-// @match        https://www.waz.de
-// @match        https://www.waz.de/*
-// @match        https://www.nrz.de
-// @match        https://www.nrz.de/*
-// @match        https://www.wp.de
-// @match        https://www.wp.de/*
-// @match        https://www.wr.de
-// @match        https://www.wr.de/*
-// @match        https://www.ikz-online.de
-// @match        https://www.ikz-online.de/*
-// @match        https://www.morgenpost.de
-// @match        https://www.morgenpost.de/*
-// @match        https://www.abendblatt.de
-// @match        https://www.abendblatt.de/*
-// @match        https://www.thueringer-allgemeine.de
-// @match        https://www.thueringer-allgemeine.de/*
-// @match        https://www.otz.de
-// @match        https://www.otz.de/*
-// @match        https://www.tlz.de
-// @match        https://www.tlz.de/*
-// @match        https://www.braunschweiger-zeitung.de
-// @match        https://www.braunschweiger-zeitung.de/*
-// @match        https://www.harzkurier.de
-// @match        https://www.harzkurier.de/*
+// @match        https://*.waz.de
+// @match        https://*.waz.de/*
+// @match        https://*.nrz.de
+// @match        https://*.nrz.de/*
+// @match        https://*.wp.de
+// @match        https://*.wp.de/*
+// @match        https://*.wr.de
+// @match        https://*.wr.de/*
+// @match        https://*.ikz-online.de
+// @match        https://*.ikz-online.de/*
+// @match        https://*.morgenpost.de
+// @match        https://*.morgenpost.de/*
+// @match        https://*.abendblatt.de
+// @match        https://*.abendblatt.de/*
+// @match        https://*.thueringer-allgemeine.de
+// @match        https://*.thueringer-allgemeine.de/*
+// @match        https://*.otz.de
+// @match        https://*.otz.de/*
+// @match        https://*.tlz.de
+// @match        https://*.tlz.de/*
+// @match        https://*.braunschweiger-zeitung.de
+// @match        https://*.braunschweiger-zeitung.de/*
+// @match        https://*.harzkurier.de
+// @match        https://*.harzkurier.de/*
 
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText
