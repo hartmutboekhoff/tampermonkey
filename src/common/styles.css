@@ -112,6 +112,86 @@ soft-row {
   outline-offset: 5px;
 }
 
+/* ***********************************************
+ * Highlight Input Felder
+ ************************************************ */
+input.GM-input-field,
+textarea.GM-input-field,
+select.GM-input-field {
+  outline: 3px solid blue !important;
+  outline-offset: 3px;
+}
+button.GM-input-field {
+  outline: 3px solid magenta !important;
+  outline-offset: 3px;
+}
+
+
+/* ***********************************************
+ * Highlight-Dialog  
+ ************************************************ */
+dialog#tampermonkey-highlight-dialog {
+  --dialog-padding: 16px;
+  overflow: hidden;
+  padding: var(--dialog-padding);
+  border: 4px solid black;
+  outline: 4px solid white;
+  box-shadow: 5px 5px 10px black;
+  background-color: white;
+}
+dialog#tampermonkey-highlight-dialog * {
+  background-color: white;
+  color: black;
+}
+
+dialog#tampermonkey-highlight-dialog::backdrop {
+  background-color: rgba(255, 255, 255, .8);
+}
+dialog#tampermonkey-highlight-dialog form {
+  position: relative;
+}
+dialog#tampermonkey-highlight-dialog h1 {
+	font-size: 2em;
+	background-color: #dde;
+	margin: 0 0 .5em 0;
+	padding: var(--dialog-padding);
+	width: calc(100% + var(--dialog-padding) * 2);
+	left: calc(0px - var(--dialog-padding));
+	top: calc(0px - var(--dialog-padding));
+	position: relative;
+}
+
+dialog#tampermonkey-highlight-dialog label {
+  width: 6em;
+  display: inline-block;
+}
+dialog#tampermonkey-highlight-dialog div.buttons {
+  width: 100%;
+  margin-top: 2em;
+  text-align: right;
+}
+dialog#tampermonkey-highlight-dialog input {
+  border: 1px solid #004;
+  margin: 4px;
+  padding: 4px;
+}
+dialog#tampermonkey-highlight-dialog input.color {
+  width: 5em;
+}
+dialog#tampermonkey-highlight-dialog input#selector {
+  width: 100%;
+}
+dialog#tampermonkey-highlight-dialog div.buttons button {
+  width: 5em;
+  margin-left: 1em;
+}
+dialog#tampermonkey-highlight-dialog div.buttons .ok-button {
+  @ok-button;
+}
+dialog#tampermonkey-highlight-dialog div.buttons .cancel-button {
+  @cancel-button;
+}
+
 /* 💥🛑⛔❌⭕🚫❗❕‼❔❓⁉⚠♻✔🗨💬 */
 
 

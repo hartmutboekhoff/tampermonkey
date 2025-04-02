@@ -193,7 +193,12 @@
     volume: .8,
     language: 'de-DE',
     readHidden: false,
-  }  
+  }
+  
+  function isInline(node, dflt=true) {
+    const displayMode = (node.currentStyle ?? window.getComputedStyle(node, ""))?.display;
+    return !displayMode? dflt : displayMode.indexOf('inline')>=0;
+  }
   function mergeUtteranceOptions(a, b, c) {
     return {
       pitch: a?.pitch ?? b?.pitch ?? c?.pitch,
@@ -390,7 +395,6 @@
       else if( typeof replacements == 'object' )
         this.replace(replacements.pattern, replacements.replacement);
     }
-    
   }
   
   class UtteranceCollector {
@@ -409,9 +413,22 @@
       if( (this.suffix??'') != '' ) this.#extractedData.addSuffix(this.suffix);
     }
     get utterances() {
-      const u = this.#extractedData.getUtterances(mergeUtteranceOptions(this.options,DEFAULT_OPTIONS)).filter(u=>!!u);
-      //console.log(u.map(t=>t.text));
-      return u;
+      const utterances = this.#extractedData.getUtterances(mergeUtteranceOptions(this.options,DEFAULT_OPTIONS)).filter(u=>!!u);
+      const res = [];
+      let prev = {};
+
+      for( const u of utterances ) {
+        if( prev.pitch == u.pitch
+            && prev.rate == u.rate
+            && prev.volume == u.volume
+            && prev.language == u.language
+            && prev.lang == u.lang
+            && prev.voice == u.voice )
+          prev.text += ' ' + u.text;
+        else
+          res.push(prev=u);
+      }
+      return res;
     }
     get format() {
       return Format;
@@ -567,7 +584,15 @@
       const res = this.default(node) ?? {};
       res.pitch = 1.3;
       res.volume = 1;
-      res.rate = 0.8;
+      return res;
+    }
+    CODE(node) {
+      const res = this.default(node) ?? {};
+      res.pitch = .9;
+      res.volume = 1;
+      if( !isInline(node) )
+        res.rate = .9;
+
       return res;
     }
     INPUT(node) {
@@ -1040,7 +1065,7 @@
       return this.#selectors.map(s=>({ancestor:element.closest(s.selector),options:s.options,selector:s.selector}))
                             .filter(ai=>!!ai.ancestor)
                             .map(ai=>(ai.distance=getDistance(element,ai.ancestor),ai))
-                            .sort((a,b)=>a.distance-b.distance)[0];
+                            .sort((a,b)=>(a.options.priority??10) == (b.options.priority??10)? a.distance-b.distance : (a.options.priority??10)-(b.options.priority??10))[0];
     }       
   }
 

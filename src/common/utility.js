@@ -98,5 +98,73 @@ function formatDate(d, format) {
   })
 }
 
+
+function highlightDomElements() {
+  const dialogHtml = `
+<form method="dialog">
+  <h1>Elemente hervorheben</h1>
+  
+  <input autofocus type="text" id="selector" name="selector" />
+  <br/>
+  <input type="checkbox" checked id="outline" name="outline" /><label for="outline">Rahmen</label>
+  <input type="text" class="color" value="#F00" id="outline-color" name="outline-color" />
+  <br/>
+  <input type="checkbox" id="background" name="background" /><label for="background">Hintergrund</label>
+  <input type="text" class="color" value="#FF0" id="background-color" name="background-color" />
+
+  <div class="buttons">
+    <button id="cancel" class="cancel-button">Cancel</button>
+    <button id="ok" class="ok-button">Ok</button>
+  </div>
+</form>
+  `;
+  
+  let dlg = document.getElementById('tampermonkey-highlight-dialog');
+  if( ! dlg ) {
+    dlg = document.createElement('dialog');
+    dlg.id = 'tampermonkey-highlight-dialog';
+    dlg.innerHTML = dialogHtml;
+    document.body.appendChild(dlg);
+    dlg.addEventListener('close',ev=>{
+      if( !dlg.returnValue == 'ok' ) return;
+      const selector = dlg.querySelector('#selector').value;
+      const highlight = {
+        outline: document.querySelector('#outline').checked,
+        outlineColor: document.querySelector('#outline-color').value,
+        background: document.querySelector('#background').checked,
+        backgroundColor: document.querySelector('#background-color').value,
+      };
+      const eleemnts = document.querySelectorAll(selector);
+      eleemnts.forEach(e=>{
+        if( highlight.outline ) {
+          e.style.outline = '4px solid '+highlight.outlineColor;
+          e.style.outlineOffset = '3px';
+        }
+        if( highlight.background ) {
+          e.style.backgroundColor = highlight.backgroundColor;
+        }
+          
+      });
+    });
+    dlg.querySelector('#ok').addEventListener('click', ev=>{
+      ev.preventDefault();
+      dlg.close('ok');
+    });
+    dlg.querySelector('#cancel').addEventListener('click', ev=>{
+      ev.preventDefault();
+      dlg.close('cancel');
+    });
+  }
+  dlg.returnValue = 'cancel';
+  dlg.showModal();
+}
+function highlightInputFields() {
+  document.querySelectorAll('input,select,textarea,button').forEach(e=>e.classList.toggle('GM-input-field'));
+}
+
+window.addEventListener('load', ()=>{
+  window.addKeyHandler('F8', ()=>highlightDomElements());
+  window.addKeyHandler('shift+F8', ()=>highlightInputFields(), {excludeFormFields:false});
+})
 // ------------------------------------------------------------------
 console.log(GM_info.script.name, 'Version '+GM_info.script.version, 'common/utility.js', 'Version '+COMMON_VERSION);
