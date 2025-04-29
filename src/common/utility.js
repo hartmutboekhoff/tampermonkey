@@ -98,20 +98,73 @@ function formatDate(d, format) {
   })
 }
 
+function getLanguage(node, ...languages) {
+  const langMap = {
+    de: 'de-DE',
+    ['de-DE']: 'de-DE',
+    ['de-AT']: 'de-DE',
+    ['de-CH']: 'de-DE',
+    en: 'en-US',
+    ['en-US']: 'en-US',
+    ['en-UK']: 'en-US',
+    ['en-AU']: 'en-US',  
+
+    // default languages for domains
+    ['.de']: 'de-DE', 
+    ['.at']: 'de-DE', 
+    ['.com']: 'en-US', 
+    ['.gov']: 'en-US', 
+    ['.net']: 'en-US',
+  };
+  
+  if( node instanceof HTMLElement ) {
+    while( node.parentElement && langMap[node.getAttribute('lang')] == undefined )
+      node = node.parentElement;
+    languages.unshift(node.getAttribute('lang'));
+  }
+  else if( typeof node == 'string' ) {
+    languages.unshift(node);
+  }
+   
+  const adjusted = languages.reduce((acc,l)=>acc??=langMap[l],undefined);
+  if( adjusted != undefined ) return adjusted;
+
+  if( typeof GM_sessionStorage == 'function' ) {
+    const globalLang = langMap[GM_sessionStorage.getMergedItem('language')];
+    if( globalLang ) return globalLang;
+  }
+  
+  // get lang attribute or tld
+  const docLang = document.getElementsByTagName('html')[0].lang 
+                  ?? document.location.host.match(/\.([^\.]+$)/)?.[1];
+
+  return langMap[docLang] ?? 'de-DE';
+}  
 
 function highlightDomElements() {
   const dialogHtml = `
 <form method="dialog">
   <h1>Elemente hervorheben</h1>
   
+<p>
   <input autofocus type="text" id="selector" name="selector" />
-  <br/>
-  <input type="checkbox" checked id="outline" name="outline" /><label for="outline">Rahmen</label>
+</p><p>
+  <input type="checkbox" checked id="outline" name="outline" />
+  <label for="outline">Rahmen</label>
   <input type="text" class="color" value="#F00" id="outline-color" name="outline-color" />
-  <br/>
-  <input type="checkbox" id="background" name="background" /><label for="background">Hintergrund</label>
+</p><p>
+  <input type="checkbox" id="background" name="background" />
+  <label for="background">Hintergrund</label>
   <input type="text" class="color" value="#FF0" id="background-color" name="background-color" />
-
+</p><p>
+  <input type="checkbox" id="mark-for-readout" name="mark-for-readout" />
+  <label for="mark-for-readout">Zum vorlesen kennzeichnen</label>
+  <select id="language" name="language">
+    <option value="">bitte ausw&auml;hlen</option>
+    <option value="en-US">englisch</option>
+    <option value="de-DE">deutsch</option>
+  </select>
+</p>
   <div class="buttons">
     <button id="cancel" class="cancel-button">Cancel</button>
     <button id="ok" class="ok-button">Ok</button>
@@ -128,20 +181,28 @@ function highlightDomElements() {
     dlg.addEventListener('close',ev=>{
       if( !dlg.returnValue == 'ok' ) return;
       const selector = dlg.querySelector('#selector').value;
-      const highlight = {
+      const options = {
         outline: document.querySelector('#outline').checked,
         outlineColor: document.querySelector('#outline-color').value,
         background: document.querySelector('#background').checked,
         backgroundColor: document.querySelector('#background-color').value,
+        markForReadout: document.querySelector('#mark-for-readout').checked,
+        language: document.querySelector('#language').value,
       };
+
       const eleemnts = document.querySelectorAll(selector);
       eleemnts.forEach(e=>{
-        if( highlight.outline ) {
-          e.style.outline = '4px solid '+highlight.outlineColor;
+        if( options.outline ) {
+          e.style.outline = '4px solid '+options.outlineColor;
           e.style.outlineOffset = '3px';
         }
-        if( highlight.background ) {
-          e.style.backgroundColor = highlight.backgroundColor;
+        if( options.background ) {
+          e.style.backgroundColor = options.backgroundColor;
+        }
+        if( options.markForReadout ) {
+          e.classList.add('read-me-please');
+          if( options.language != '' )
+            e.setAttribute('lang', options.language);
         }
           
       });
@@ -155,6 +216,9 @@ function highlightDomElements() {
       dlg.close('cancel');
     });
   }
+  
+  const langOpt = dlg.querySelector(`option[value="${getLanguage()}"]`);
+  if( langOpt != undefined ) langOpt.setAttribute('selected', true);
   dlg.returnValue = 'cancel';
   dlg.showModal();
 }
@@ -165,6 +229,7 @@ function highlightInputFields() {
 window.addEventListener('load', ()=>{
   window.addKeyHandler('F8', ()=>highlightDomElements());
   window.addKeyHandler('shift+F8', ()=>highlightInputFields(), {excludeFormFields:false});
+  window.registerForReadOut('.read-me-please', {language:getLanguage()});
 })
 // ------------------------------------------------------------------
 console.log(GM_info.script.name, 'Version '+GM_info.script.version, 'common/utility.js', 'Version '+COMMON_VERSION);

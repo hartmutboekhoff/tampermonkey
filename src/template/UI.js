@@ -9,6 +9,7 @@
   
     // ================================================
     console.log('initializing read-out elements');
+    //GM_sessionStorage.setItem('language', 'de-DE');
     //window.registerForReadOut('selector');
     
 

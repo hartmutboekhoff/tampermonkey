@@ -162,7 +162,7 @@ dialog#tampermonkey-highlight-dialog h1 {
 }
 
 dialog#tampermonkey-highlight-dialog label {
-  width: 6em;
+  min-width: 6em;
   display: inline-block;
 }
 dialog#tampermonkey-highlight-dialog div.buttons {
@@ -170,7 +170,8 @@ dialog#tampermonkey-highlight-dialog div.buttons {
   margin-top: 2em;
   text-align: right;
 }
-dialog#tampermonkey-highlight-dialog input {
+dialog#tampermonkey-highlight-dialog input,
+dialog#tampermonkey-highlight-dialog select {
   border: 1px solid #004;
   margin: 4px;
   padding: 4px;

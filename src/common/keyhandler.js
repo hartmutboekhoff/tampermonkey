@@ -149,7 +149,7 @@
   	  return this.#contextStack.length;
   	}
   	dispatch(ev) {
-  	  console.group('greasemonkey key-handler');
+  	  console.group('greasemonkey key-handler', GM_info.script.name);
   	  const r = this.#dispatch(ev);
   	  console.groupEnd();
   	  return r;

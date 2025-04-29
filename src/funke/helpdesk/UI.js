@@ -1,5 +1,4 @@
 (function(){
-
   const issueKeyToDate = {
     pattern: /(?:\[#)?(\d{4})(\d{2})(\d{2})-(\d{4})\]?/,
     replacement: 'vom $3.$2.$1, Nr. $4',
@@ -86,6 +85,8 @@
 
   window.addEventListener('load',()=>{
     console.group('greasemonkey')
+
+    const language = window.top.document?.getElementsByTagName('html')[0].lang;    
     
     // ================================================
     console.log('initializing shortcut-keys');
@@ -95,41 +96,44 @@
     // ================================================
     console.log('initializing read-out elements');
     
-    window.registerForReadOut('.labelSubject');
-    window.registerForReadOut('#ComplexTextDescription',
-                              { exclude:'textarea,div.helpLineComplexTextLabel>table',
-                                childElements: {
-                                  ['table[summary^="Email signature"]']: {
-                                    extract: node=>node.querySelector('div>div>p'),
-                                  },
-                                }
-                              });
-    window.registerForReadOut('.tabControlHeader span');
+    window.registerForReadOut('.labelSubject', {language});
+    window.registerForReadOut('#ComplexTextDescription', { 
+                               language,
+                               exclude:'textarea,div.helpLineComplexTextLabel>table',
+                               childElements: {
+                                 ['table[summary^="Email signature"]']: {
+                                   extract: node=>node.querySelector('div>div>p'),
+                                 },
+                               }
+                             });
+    window.registerForReadOut('.tabControlHeader span', {language});
     // Zeile im Reiter für reservierte Aufgaben.
-    window.registerForReadOut('div.jqx-grid-cell.jqx-item'
-                              //,{ replace: issueKeyToDate }
-                             );
-    window.registerForReadOut('div#contenttableHLGrid>div');
+    window.registerForReadOut('div.jqx-grid-cell.jqx-item', {language});
+    window.registerForReadOut('div#contenttableHLGrid>div', {language});
     // Process-Liste
-    window.registerForReadOut('div.jqx-grid-group-cell',
-                              {replace: issueKeyToDate}
-                             );
-    window.registerForReadOut('mat-cell.mat-cell.mat-cell-data');
-    window.registerForReadOut('textarea#vm\\.Sys\\.Description');
-    window.registerForReadOut('input#vm\\.Sys\\.Subject');
+    window.registerForReadOut('div.jqx-grid-group-cell', {
+                               language,
+                               replace: issueKeyToDate
+                             });
+    window.registerForReadOut('mat-cell.mat-cell.mat-cell-data', {language});
+    window.registerForReadOut('textarea#vm\\.Sys\\.Description', {language});
+    window.registerForReadOut('input#vm\\.Sys\\.Subject', {language});
     
-    window.registerForReadOut('div.activitylog > div.activitylog-row',
-                              {exclude:'.activitylog-activity-changes,.activitylog-activity-propertyChanges,.activitylog-activity-header,label,span.comment-title'}
-                             );
-    window.registerForReadOut('div.activitylog > div.activitylog-row > div',
-                              {exclude:'.activitylog-activity-changes,.activitylog-activity-propertyChanges,label'}
-                             );
-    window.registerForReadOut('#GroupBoxActivityDescription',
-                              {exclude:'#GroupBoxActivityDescription>span,#GroupBoxSUAttachment'}
-                             );
+    window.registerForReadOut('div.activitylog > div.activitylog-row', {
+                               language,
+                               exclude:'.activitylog-activity-changes,.activitylog-activity-propertyChanges,.activitylog-activity-header,label,span.comment-title'
+                             });
+    window.registerForReadOut('div.activitylog > div.activitylog-row > div', {
+                               language,
+                               exclude:'.activitylog-activity-changes,.activitylog-activity-propertyChanges,label'
+                             });
+    window.registerForReadOut('#GroupBoxActivityDescription', {
+                                language,
+                                exclude:'#GroupBoxActivityDescription>span,#GroupBoxSUAttachment'
+                             });
     // Activity-Log
-    window.registerForReadOut('#SUControlEDITOR>div>div',
-                              {
+    window.registerForReadOut('#SUControlEDITOR>div>div', {
+                                language,
                                 //exclude:'#PanelContentSUControlEDITOR2 span:nth-child(-n+1)',
                                 childElements: {
                                   '[id^="PanelHeaderSUControlEDITOR"]': {
@@ -142,12 +146,13 @@
                                 }
                              });
 
-    window.registerForReadOut('#tbSimpleObjectSearchContact,#tbSimpleObjectSearchOpenedBy');
+    window.registerForReadOut('#tbSimpleObjectSearchContact,#tbSimpleObjectSearchOpenedBy', {language});
 
-    window.registerForReadOut('#DateTimeControlREGISTRATIONTIMEcalendarTB');
-    window.registerForReadOut('a.hyperLinkObjectId span.labelObjectId, input#tbTextBoxBezugsnummermitTag',
-                              { replace: issueKeyToDate}
-                             );
+    window.registerForReadOut('#DateTimeControlREGISTRATIONTIMEcalendarTB', {language});
+    window.registerForReadOut('a.hyperLinkObjectId span.labelObjectId, input#tbTextBoxBezugsnummermitTag', { 
+                               language,
+                               replace: issueKeyToDate
+                             });
 
 
     // ================================================

@@ -20,6 +20,9 @@
         {pattern: '.', replacement: ' dot '},
       ]
     });
+    window.registerForReadOut('div.comment-body span',{
+      exclude:'span.comment-date'
+    });
 
     // ================================================
     console.log('initializing mutation-reactions');

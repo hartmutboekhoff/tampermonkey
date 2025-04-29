@@ -1,6 +1,5 @@
 (function(){
   window.addEventListener('load',()=>{
-    const language = document.getElementsByTagName('html')[0].lang;
     
     // ================================================
     console.log('initializing shortcut-keys');
@@ -10,9 +9,8 @@
     // ================================================
     console.log('initializing read-out elements');
     //window.registerForReadOut('selector');
-    window.registerForReadOut('h1,h2,h3,h4,p,ul,ol,label,button,th,td,article',{language});
+    window.registerForReadOut('h1,h2,h3,h4,p,ul,ol,label,button,th,td,article');
     window.registerForReadOut('figure',{
-      language,
       extract: node=>node.getElementsByTagName('figcaption'),
     });
     

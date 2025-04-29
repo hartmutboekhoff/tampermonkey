@@ -20,11 +20,14 @@
 // @require         http://localhost:3000/common/utility.js
 // @require         http://localhost:3000/common/styles.js
 // @require         http://localhost:3000/common/KeyHandler.js
+// @require         http://localhost:3000/common/UnifiedSessionStorage.js
 // @require         http://localhost:3000/common/readout.js
 
 // @require         http://localhost:3000/hartmut/any/UI.js
 
 // ==/UserScript==
+
+GM_sessionStorage(200);
 
 
 console.log(GM_info.script.name, 'Version '+GM_info.script.version, 'Initialization complete');

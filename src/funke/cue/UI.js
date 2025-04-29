@@ -80,6 +80,7 @@
     console.log('initializing read-out elements');
     //window.registerForReadOut('selector');
     window.registerForReadOut('cue-list-item-versions', {
+      language: 'de-DE',
       extract: node=>([...node.querySelectorAll('[data-testid="author"]'),...node.querySelectorAll('[data-testid="date"],[data-testid="time"]')].map(n=>n.innerText).join(' '))
     });
   

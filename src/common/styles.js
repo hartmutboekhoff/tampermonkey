@@ -130,7 +130,7 @@ function collectCssResources() {
 }
 
 window.addEventListener('load',()=>{
-  console.group('greasemonkey');
+  console.group('greasemonkey', GM_info.script.name, location.origin);
   addStyleToDOM(compileStylesheets(...collectCssResources()))
   console.groupEnd();
 });
