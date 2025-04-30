@@ -1,4 +1,6 @@
 (function(){
+  GM_sessionStorage.setItem('language', 'de-DE');
+  
   const issueKeyToDate = {
     pattern: /(?:\[#)?(\d{4})(\d{2})(\d{2})-(\d{4})\]?/,
     replacement: 'vom $3.$2.$1, Nr. $4',

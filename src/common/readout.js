@@ -294,6 +294,54 @@
     }
   }
 
+  class UtteranceElementCollection {
+    #elements = []; 
+    #highlighted = undefined;
+    
+    constructor(u) {
+      u.addEventListener('boundary', ev=>this.#onBoundary(ev));
+      u.addEventListener('end', ev=>this.#onEnd(ev));
+      u.addEventListener('error', ev=>this.#onEnd(ev));
+    }
+    
+    push(startOffset, length, element) {
+      this.#elements.push({element, startOffset, length});
+    }
+    append(ue, offset) {
+      for(let {element, startOffset, length} of ue) {
+        startOffset += offset;
+        this.#elements.push({element, startOffset, length});
+      }
+    }
+    getAt(offset) {
+      return this.#elements.find(e=>e.startOffset <= offset && e.startOffset+e.length > offset)?.element;
+    }
+    highlightAt(offset) {
+      let e = this.getAt(offset);
+      if( !e ) return;
+      if( e.nodeName == '#text' ) e = e.parentElement;
+      if( e == this.#highlighted ) return;
+      if( this.#highlighted )
+        this.#highlighted.style.outline = this.#highlighted.originalOutlineStyle;
+      this.#highlighted = e;
+      e.originalOutlineStyle ??= e.style.outline;
+      e.style.outline = '4px solid blue';
+    }
+    endHighlighting() {
+      if( !this.#highlighted ) return;
+      this.#highlighted.style.outline = this.#highlighted.originalOutlineStyle;
+      this.#highlighted = undefined;
+    }
+    
+    #onBoundary(ev) {
+      this.highlightAt(ev.charIndex);
+    }
+    #onEnd(ev) {
+      this.endHighlighting();
+    }
+    [Symbol.iterator]() {return this.#elements[Symbol.iterator]();}
+  }
+
   class NormalizedExtract {
     #text; #nodes; #element;
     
@@ -378,7 +426,8 @@
       if( this.#text != undefined )  {
         const u = new SpeechSynthesisUtterance(this.#text);
         assignUtteranceOptions(u, options);
-        u.htmlElement = this.#element;
+        u.htmlElements = new UtteranceElementCollection(u);
+        u.htmlElements.push(0, this.#text.length, this.#element);
         return [u];
       }
       else if( this.#nodes != undefined )
@@ -431,8 +480,11 @@
             && prev.volume == u.volume
             && prev.language == u.language
             && prev.lang == u.lang
-            && prev.voice == u.voice )
+            && prev.voice == u.voice ) {
+          const startOffset = prev.text.length;
           prev.text += ' ' + u.text;
+          prev.htmlElements.append(u.htmlElements, startOffset);
+        }
         else
           res.push(prev=u);
       }
@@ -705,12 +757,7 @@
           return;
 
         element.originalStyle ??= element.getAttribute('style');
-try {        
         element.style.outline = '4px solid blue';
-} catch(e) {
-  console.log('mist');
-  console.error(e);
-}
         
         u.addEventListener('end', ()=>element.setAttribute('style', element.originalStyle));
         u.addEventListener('error', ()=>element.setAttribute('style', element.originalStyle));
@@ -720,8 +767,8 @@ try {
         this.#current.progress = uix;
 
       const u = this.#current[this.#current.progress];        
-      applyHighlighting(u);
-      console.debug('Speaking:', u.text, u.htmlElement?.nodeName=='#text'? u.htmlElement.parentElement??u.htmlElement : u.htmlElement);
+      //applyHighlighting(u);
+      //console.debug('Speaking:', u.text, u.htmlElement?.nodeName=='#text'? u.htmlElement.parentElement??u.htmlElement : u.htmlElement);
 
       window.speechSynthesis.speak(u);
       this.#setPlayed(this.#currentIx, uix??0);

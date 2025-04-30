@@ -98,7 +98,14 @@ function formatDate(d, format) {
   })
 }
 
-function getLanguage(node, ...languages) {
+function getLanguage(...languages) {
+  function getNodeLang(node) {
+    while( node && node.nodeName.toUpperCase() != 'HTML' ) {
+      const l = langMap[node.getAttribute('lang')];
+      if( l ) return l;
+      node = node.parentElement;
+    }
+  }
   const langMap = {
     de: 'de-DE',
     ['de-DE']: 'de-DE',
@@ -117,27 +124,25 @@ function getLanguage(node, ...languages) {
     ['.net']: 'en-US',
   };
   
-  if( node instanceof HTMLElement ) {
-    while( node.parentElement && langMap[node.getAttribute('lang')] == undefined )
-      node = node.parentElement;
-    languages.unshift(node.getAttribute('lang'));
+  const adjusted = languages.reduce((acc,l)=>acc??=(l instanceof HTMLElement)? getNodeLang(l) : langMap[l],undefined);
+  if( adjusted != undefined ) {
+    console.log('language: ', adjusted, 'from', languages);
+    return adjusted;
   }
-  else if( typeof node == 'string' ) {
-    languages.unshift(node);
-  }
-   
-  const adjusted = languages.reduce((acc,l)=>acc??=langMap[l],undefined);
-  if( adjusted != undefined ) return adjusted;
 
   if( typeof GM_sessionStorage == 'function' ) {
     const globalLang = langMap[GM_sessionStorage.getMergedItem('language')];
-    if( globalLang ) return globalLang;
+    if( globalLang ) {
+      console.log('language: ', globalLang, 'from global setting');
+      return globalLang;
+    }
   }
   
   // get lang attribute or tld
   const docLang = document.getElementsByTagName('html')[0].lang 
                   ?? document.location.host.match(/\.([^\.]+$)/)?.[1];
 
+  console.log('language: ', docLang, 'from document');  
   return langMap[docLang] ?? 'de-DE';
 }  
 
@@ -225,6 +230,29 @@ function highlightDomElements() {
 function highlightInputFields() {
   document.querySelectorAll('input,select,textarea,button').forEach(e=>e.classList.toggle('GM-input-field'));
 }
+
+function blinkElement(el, style) {
+  if( typeof style == 'string' ) style = {backgroundColor: style};
+    
+  const oldStyle = {};
+  for( const sn in style ) {
+    oldStyle[sn] = el.style[sn];
+    el.style[sn] = style[sn];
+  }
+  const oldTransitionh = el.style.transition;
+  el.style.transition = '';
+  window.setTimeout(()=>{
+    for( const sn in oldStyle ) {
+      el.style[sn] = oldStyle[sn];
+    }
+    el.style.transition = 'all 2s ease-in-out 0.5s';
+  }, 1000);
+  window.setTimeout(()=>{
+    el.style.transition = oldTransition;
+  }, 3000);
+  
+}    
+
 
 window.addEventListener('load', ()=>{
   window.addKeyHandler('F8', ()=>highlightDomElements());
