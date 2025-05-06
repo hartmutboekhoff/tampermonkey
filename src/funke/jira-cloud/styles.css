@@ -240,3 +240,10 @@ li div.yse7za_cardColorInner {
 div[data-testid="smart-links-container"] {
   display:none !important;
 }
+
+.recently-updated-24 {
+  background-color: hsl(100 100% 40%);
+}
+.recently-updated-48 {
+  background-color: hsl(100 90% 70%);
+}

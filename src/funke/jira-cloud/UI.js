@@ -22,6 +22,7 @@
     window.registerForReadOut('div[data-testid="issue-view-layout-templates-default.ui.foundation-content.foundation-content-wrapper"] h1');
     window.registerForReadOut('div:has(>li>a[data-testid="issue.views.issue-base.foundation.breadcrumbs.current-issue.item"])');
 
+    // cards on board
     window.registerForReadOut('div[data-test-id="software-board.board-area"] section li', {
       readHidden: true,
       exclude: ['img', 'span[id$="-tooltip"]'],
@@ -57,6 +58,7 @@
     // ================================================
     console.log('initializing mutation-reactions');
     //window.onMutation('selector', reaction);
+    // copy Link to Clipboard
     window.onMutation('a[href^="https://cue.funke.cue.cloud/"]', {
       runOnLoad: true,
       listeners: {
@@ -81,6 +83,26 @@
         }
       }
     });
+    window.onMutation('[data-issuefieldid="updated"]', {
+      callback: el=>{
+        const updated = parseDate(el.innerText);
+        const ms = new Date() - updated;
+        let threshold = 1;
+        switch( updated.getDay() ) {
+          case 1: // monday
+            ++threshold;
+          case 7: // sunday
+            ++threshold;
+        }
+        if( ms < 1000*60*60*24*threshold )
+          el.classList.add('recently-updated-24');
+        else if( ms < 1000*60*60*24*(threshold+1) )
+          el.classList.add('recently-updated-48');
+        else
+          el.classList.remove('recently-updated-24', 'recently-updated-48');
+
+      }
+    })
   
       // ================================================
 
