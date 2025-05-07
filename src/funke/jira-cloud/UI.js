@@ -94,7 +94,10 @@
           case 7: // sunday
             ++threshold;
         }
-        if( ms < 1000*60*60*24*threshold )
+
+        if( ms < 1000*60*60*12 )
+          el.classList.add('recently-updated-12');
+        else if( ms < 1000*60*60*24*threshold )
           el.classList.add('recently-updated-24');
         else if( ms < 1000*60*60*24*(threshold+1) )
           el.classList.add('recently-updated-48');

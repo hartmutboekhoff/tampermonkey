@@ -241,9 +241,12 @@ div[data-testid="smart-links-container"] {
   display:none !important;
 }
 
-.recently-updated-24 {
+.recently-updated-12 {
   background-color: hsl(100 100% 40%);
 }
+.recently-updated-24 {
+  background-color: hsl(120 90% 60%);
+}
 .recently-updated-48 {
-  background-color: hsl(100 90% 70%);
+  background-color: hsl(120 90% 80%);
 }
