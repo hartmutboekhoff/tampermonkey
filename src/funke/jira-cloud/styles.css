@@ -96,11 +96,13 @@ span:has(> div > div > div[data-testid="issue.activity.comment"]) > div > div {
 	background-color: var(--editor-background-color);
 }
 
+div[data-testid="issue-view-product-templates-default.ui.foundation-content.foundation-content-wrapper"]:has(h1),
 div[data-testid="issue-view-layout-templates-default.ui.foundation-content.foundation-content-wrapper"]:has(h1) {
   padding: 1em 1em 1.8em;
   background-color: var(--field-highlight-color);
 }
 
+div[data-testid="issue-view-product-templates-default.ui.foundation-content.foundation-content-wrapper"] h1,
 div[data-testid="issue-view-layout-templates-default.ui.foundation-content.foundation-content-wrapper"] h1 {
   font-size: 3em;
   white-space: nowrap;
@@ -249,4 +251,15 @@ div[data-testid="smart-links-container"] {
 }
 .recently-updated-48 {
   background-color: hsl(160 90% 80%);
+}
+
+button[data-testid="save-filter-dialog.ui.save-filter-dialog.button"],
+button[data-testid="save-filter-dialog.ui.save-filter-dialog.button"]:hover {
+  @neutral-button;
+  color: white;
+  font-weight: bold;
+}
+button[data-testid="issue-navigator.ui.jql-builder.reset-button"],
+button[data-testid="issue-navigator.ui.jql-builder.reset-button"]:hover {
+  @cancel-button;
 }

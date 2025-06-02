@@ -142,7 +142,7 @@ function getLanguage(...languages) {
   const docLang = document.getElementsByTagName('html')[0].lang 
                   ?? document.location.host.match(/\.([^\.]+$)/)?.[1];
 
-  console.log('language: ', docLang, 'from document');  
+  console.log('language: ', langMap[docLang], '('+docLang+')', 'from document');  
   return langMap[docLang] ?? 'de-DE';
 }  
 

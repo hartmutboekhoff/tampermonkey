@@ -9,7 +9,7 @@
     // ================================================
     console.log('initializing read-out elements');
     //window.registerForReadOut('selector');
-    window.registerForReadOut('h1,h2,h3,h4,p,ul,ol,label,button,th,td,article');
+    window.registerForReadOut('h1,h2,h3,h4,p,ul,ol,label,button,th,td,article,legend,option');
     window.registerForReadOut('figure',{
       extract: node=>node.getElementsByTagName('figcaption'),
     });
