@@ -19,7 +19,7 @@
         }
       }
     });
-    window.registerForReadOut('div[data-testid="issue-view-layout-templates-default.ui.foundation-content.foundation-content-wrapper"] h1');
+    window.registerForReadOut('div[data-testid="issue-view-product-templates-default.ui.foundation-content.foundation-content-wrapper"] h1');
     window.registerForReadOut('div:has(>li>a[data-testid="issue.views.issue-base.foundation.breadcrumbs.current-issue.item"])');
 
     // cards on board

@@ -10,6 +10,7 @@
     // ================================================
     console.log('initializing read-out elements');
     //window.registerForReadOut('selector');
+    window.registerForReadOut('.review-comment task-lists',{language:'de-DE'});
     
 
     // ================================================

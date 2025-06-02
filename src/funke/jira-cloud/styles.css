@@ -96,16 +96,17 @@ span:has(> div > div > div[data-testid="issue.activity.comment"]) > div > div {
 	background-color: var(--editor-background-color);
 }
 
-div[data-testid="issue-view-layout-templates-default.ui.foundation-content.foundation-content-wrapper"]:has(h1) {
+/*  Titelzeile  */
+div[data-testid="issue-view-product-templates-default.ui.foundation-content.foundation-content-wrapper"]:has(h1) {
   padding: 1em 1em 1.8em;
   background-color: var(--field-highlight-color);
 }
-
-div[data-testid="issue-view-layout-templates-default.ui.foundation-content.foundation-content-wrapper"] h1 {
+div[data-testid="issue-view-product-templates-default.ui.foundation-content.foundation-content-wrapper"] h1 {
   font-size: 3em;
   white-space: nowrap;
   color: white;
 }
+
 
 div[data-component-selector="jira-issue-view-layout-templates-pinned-fields-banner-with-grouping-pinned-field-highlight-wrapper"] summary {
   background-color: var(--legend-background-color);
@@ -208,6 +209,10 @@ div#stepped-process input#move_submit {
 div[data-testid="software-board.board"] div[data-testid="software-board.board-area"] section ul li > div[data-testid] {
   box-shadow: 0 0 4px 2px #66c;
 }
+div[data-testid="software-board.board"] div[data-testid="software-board.board-area"] section ul li > div[data-testid]:has(a:hover) {
+	box-shadow: 0px 0px 6px 6px orange;
+	background-color: rgba(255, 200, 0, 20%);
+}
 
 
 /*--_xexnhp*/
@@ -221,6 +226,7 @@ div[data-testid="software-board.board"] div[data-testid="software-board.board-ar
 ._16qssefo {
 	box-shadow: 1px 1px 3px 3px blue !important;
 }
+
 /* board-header */
 div[data-testid="software-board.board"]>div:first-child>div:first-child>div>div:last-child {
 	_background-color: var(--legend-light-background-color);
