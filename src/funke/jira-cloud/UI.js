@@ -13,7 +13,7 @@
     window.registerForReadOut('div[data-editor-container-id="issue-description-editor"]', {
       exclude: 'a img',
     });
-    window.registerForReadOut('div[data-testid="issue.activity.comments-list"] > div > span > div > div:nth-child(2)', {
+    window.registerForReadOut('div[data-testid="issue.activity.comments-list"] > div > span > div > div:nth-child(n+2)', {
       exclude: ['button'],
       childElements: {
         'h3': {
