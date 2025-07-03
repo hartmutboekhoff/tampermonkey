@@ -10,7 +10,9 @@
     // ================================================
     console.log('initializing read-out elements');
     //window.registerForReadOut('selector');
-    window.registerForReadOut('div[data-editor-container-id="issue-description-editor"]');
+    window.registerForReadOut('div[data-editor-container-id="issue-description-editor"]', {
+      exclude: 'a img',
+    });
     window.registerForReadOut('div[data-testid="issue.activity.comments-list"] > div > span > div > div:nth-child(2)', {
       exclude: ['button'],
       childElements: {
@@ -19,7 +21,7 @@
         }
       }
     });
-    window.registerForReadOut('div[data-testid="issue-view-layout-templates-default.ui.foundation-content.foundation-content-wrapper"] h1');
+    window.registerForReadOut('div[data-testid="issue-view-product-templates-default.ui.foundation-content.foundation-content-wrapper"] h1');
     window.registerForReadOut('div:has(>li>a[data-testid="issue.views.issue-base.foundation.breadcrumbs.current-issue.item"])');
 
     // cards on board

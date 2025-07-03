@@ -157,7 +157,7 @@
    	#dispatch(ev) {
    	  function isExcludedFormField(target) {
    	    const types = ['INPUT', 'SELECT', 'TEXTAREA', 'BUTTON', 'OPTION', 'OPTGROUP'];
-   	    return types.includes(target.tagName);
+   	    return types.includes(target.tagName) || target.contentEditable;
    	  }
    	  function execute(h) {
    	    try {

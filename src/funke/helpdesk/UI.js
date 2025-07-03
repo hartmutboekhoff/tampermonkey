@@ -5,6 +5,10 @@
     pattern: /(?:\[#)?(\d{4})(\d{2})(\d{2})-(\d{4})\]?/,
     replacement: 'vom $3.$2.$1, Nr. $4',
   };
+  const extractIssueType = {
+    pattern: /^.*-\s(.*?)$/,
+    replacement: '$1'
+  }
 
 	function assignToUser(teamname, username,retry=0) {
 		function recursion(until) {
@@ -29,9 +33,11 @@
 		}
 	}
 	function readTicketInfo() {
-    window.ReadOut.queueSelector('a.hyperLinkObjectId span.labelObjectId', {replace: issueKeyToDate})
-                  .queueSelector('.labelSubject')
-                  .queueSelector('#tbSimpleObjectSearchContact',{replace:{pattern:/^(.*),(.*),(.*)$/, replacement:'von $2 $1, $3'}});
+    window.ReadOut
+      .queueSelector('#tbTextBoxBezugsnummermitTag', {replace: issueKeyToDate})
+      .queueSelector('a.hyperLinkObjectId span.labelObjectId', {replace: extractIssueType})
+      .queueSelector('.labelSubject')
+      .queueSelector('#tbSimpleObjectSearchContact',{replace:{pattern:/^(.*),(.*),(.*)$/, replacement:'von $2 $1, $3'}});
 	}
 	
 	function addSendMailButton() {
@@ -93,6 +99,7 @@
     // ================================================
     console.log('initializing shortcut-keys');
     window.addKeyHandler('F2',readTicketInfo,{excludeFormFields:false});
+    window.addKeyHandler('KeyI',readTicketInfo,{excludeFormFields:false});
 
     
     // ================================================
@@ -101,6 +108,7 @@
     window.registerForReadOut('.labelSubject', {language});
     window.registerForReadOut('#ComplexTextDescription', { 
                                language,
+                               prefix: "Beschreibungstext:",
                                exclude:'textarea,div.helpLineComplexTextLabel>table',
                                childElements: {
                                  ['table[summary^="Email signature"]']: {

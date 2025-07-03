@@ -748,6 +748,7 @@
     #speak(uix) {
       function applyHighlighting(u) {
         let element = u.htmlElement;
+        if( !element ) return;
         if( element.nodeName == '#text' ) element = element.parentElement;
         if( !(element instanceof HTMLElement) ) {
           //console.log('cannot highlight non-HTMLElement', element);
