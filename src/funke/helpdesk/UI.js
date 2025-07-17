@@ -9,6 +9,10 @@
     pattern: /^.*-\s(.*?)$/,
     replacement: '$1'
   }
+  const reporter = {
+    pattern:/^(?:angestellt|employed)?(.*),(.*),(.*)$/i, 
+    replacement:'von $2 $1'
+  };
 
 	function assignToUser(teamname, username,retry=0) {
 		function recursion(until) {
@@ -34,10 +38,11 @@
 	}
 	function readTicketInfo() {
     window.ReadOut
-      .queueSelector('#tbTextBoxBezugsnummermitTag', {replace: issueKeyToDate})
+     //.queueSelector('#tbTextBoxBezugsnummermitTag', {replace: issueKeyToDate})
+      .queueSelector('#DateTimeControlREGISTRATIONTIMEcalendarTB', {})
       .queueSelector('a.hyperLinkObjectId span.labelObjectId', {replace: extractIssueType})
       .queueSelector('.labelSubject')
-      .queueSelector('#tbSimpleObjectSearchContact',{replace:{pattern:/^(.*),(.*),(.*)$/, replacement:'von $2 $1, $3'}});
+      .queueSelector('#tbSimpleObjectSearchContact',{replace:reporter});
 	}
 	
 	function addSendMailButton() {
@@ -99,7 +104,7 @@
     // ================================================
     console.log('initializing shortcut-keys');
     window.addKeyHandler('F2',readTicketInfo,{excludeFormFields:false});
-    window.addKeyHandler('KeyI',readTicketInfo,{excludeFormFields:false});
+    window.addKeyHandler('KeyI',readTicketInfo,{});
 
     
     // ================================================
