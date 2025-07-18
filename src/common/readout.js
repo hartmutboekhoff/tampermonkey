@@ -460,7 +460,7 @@
     constructor(node, options) {
       this.#initOptions(options);
       
-      this.options.language = getLanguage(node, this.options.language);
+      this.options.language = getLanguage(this.options.language, node);
 
       this.#extractedData = this.#collectNode(node);
       if( this.#extractedData.isEmpty && options.useAriaLabels !== false )

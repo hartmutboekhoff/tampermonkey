@@ -124,7 +124,18 @@ function getLanguage(...languages) {
     ['.net']: 'en-US',
   };
   
-  const adjusted = languages.reduce((acc,l)=>acc??=(l instanceof HTMLElement)? getNodeLang(l) : langMap[l],undefined);
+  const adjusted = languages.reduce((acc,l)=>{
+    if( acc ) return acc;
+    if( l instanceof HTMLElement ) return getNodeLang(l);
+    if( typeof l == 'function' ) 
+      try{
+        return l();
+      }
+      catch(e) {
+        return undefined;
+      }
+    return langMap[l];
+  }, undefined);
   if( adjusted != undefined ) {
     console.log('language: ', adjusted, 'from', languages);
     return adjusted;
