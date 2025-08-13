@@ -10,7 +10,11 @@
     // ================================================
     console.log('initializing read-out elements');
     //window.registerForReadOut('selector');
-    window.registerForReadOut('div[data-editor-container-id="issue-description-editor"]');
+
+    window.registerForReadOut('div[data-editor-container-id="issue-description-editor"]', {
+      exclude: 'a img',
+    });
+
     window.registerForReadOut('div[data-testid="issue.activity.comments-list"] > div > span > div > div', {
       exclude: [
         'button', 

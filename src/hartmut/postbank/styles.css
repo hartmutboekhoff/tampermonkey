@@ -1,0 +1,6 @@
+/* @printCompiledCss = false */
+
+db-list-row {
+  outline: 5px solic green !important;
+  outline-offset: 5px !important;
+}

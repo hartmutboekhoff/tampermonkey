@@ -1,1 +1,33 @@
 /* @printCompiledCss = false */
+
+#GM-hbo-language-selector:background {
+  background-color: red;
+}
+
+#GM-hbo-language-selector {
+  padding: 0;
+}
+
+#GM-hbo-language-selector h1 {
+  background-color: #aac;
+  margin: 0;
+  padding: .5em 2em;
+}
+#GM-hbo-language-selector div.dialog-body {
+  padding: 2em 2em 1em;
+}
+#GM-hbo-language-selector div.buttons {
+  text-align: right;
+  margin-top: 2em;
+}
+#GM-hbo-language-selector div.buttons button {
+  padding: .5em 1em;
+  min-width: 5em;
+  margin: 0 1em;
+}
+
+#GM-hbo-language-selector select {
+  transform: scale(2);
+  transform-origin: left;
+  width: 40%;
+}

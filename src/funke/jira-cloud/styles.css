@@ -46,6 +46,15 @@ div[data-editor-container-id="issue-description-editor"] {
   @field-outline;
   margin: 2em 0;
 }
+div:has(>div[data-testid="issue.views.field.select.common.select-inline-edit.components"]):before {
+  content: " ";
+  background-image: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, purple, pink);
+  height: 35px;
+  width: 30px;
+  display: block;
+  float: left;
+  margin: 0 10px 2px 0;
+ }
 
 /*Beschreibung */    div[data-editor-container-id="issue-description-editor"] {
   outline: 4px solid var(--alternative-border-color) !important; 
@@ -97,11 +106,14 @@ span:has(> div > div > div[data-testid="issue.activity.comment"]) > div > div {
 }
 
 /*  Titelzeile  */
-div[data-testid="issue-view-product-templates-default.ui.foundation-content.foundation-content-wrapper"]:has(h1) {
+div[data-testid="issue-view-product-templates-default.ui.foundation-content.foundation-content-wrapper"]:has(h1),
+div[data-testid="issue-view-layout-templates-default.ui.foundation-content.foundation-content-wrapper"]:has(h1) {
   padding: 1em 1em 1.8em;
   background-color: var(--field-highlight-color);
 }
-div[data-testid="issue-view-product-templates-default.ui.foundation-content.foundation-content-wrapper"] h1 {
+
+div[data-testid="issue-view-product-templates-default.ui.foundation-content.foundation-content-wrapper"] h1,
+div[data-testid="issue-view-layout-templates-default.ui.foundation-content.foundation-content-wrapper"] h1 {
   font-size: 3em;
   white-space: nowrap;
   color: white;
@@ -206,12 +218,13 @@ div#stepped-process input#move_submit {
 }
 
 
+/* Kacheln im Board */
 div[data-testid="software-board.board"] div[data-testid="software-board.board-area"] section ul li > div[data-testid] {
   box-shadow: 0 0 4px 2px #66c;
 }
 div[data-testid="software-board.board"] div[data-testid="software-board.board-area"] section ul li > div[data-testid]:has(a:hover) {
 	box-shadow: 0px 0px 6px 6px orange;
-	background-color: rgba(255, 200, 0, 20%);
+	background-color: rgba(0,255,220, 40%);
 }
 
 
@@ -255,4 +268,25 @@ div[data-testid="smart-links-container"] {
 }
 .recently-updated-48 {
   background-color: hsl(160 90% 80%);
+}
+
+button[data-testid="save-filter-dialog.ui.save-filter-dialog.button"],
+button[data-testid="save-filter-dialog.ui.save-filter-dialog.button"]:hover {
+  @neutral-button;
+  color: white;
+  font-weight: bold;
+}
+button[data-testid="issue-navigator.ui.jql-builder.reset-button"],
+button[data-testid="issue-navigator.ui.jql-builder.reset-button"]:hover {
+  @cancel-button;
+}
+
+div[data-testid="issue.views.issue-base.foundation.status.actions-wrapper"]>div>button {
+  @attention-button;
+}
+div[data-testid="issue.views.issue-base.foundation.status.actions-wrapper"]>div>div button {
+  @neutral2-button;
+}
+div[data-testid="issue.views.issue-base.foundation.status.actions-wrapper"]>div>div button span {
+  font-weight: bold;
 }

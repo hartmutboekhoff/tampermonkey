@@ -13,7 +13,7 @@
       console.log('toggle debug-compact');
       document.body.classList.toggle('debug-compact')
       console.log('done toggle debug-compact');
-    });
+    },{excludeFormFields:false});
   
     // ================================================
     console.log('initializing read-out elements');

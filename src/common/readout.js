@@ -460,9 +460,11 @@
     constructor(node, options) {
       this.#initOptions(options);
       
-      this.options.language = getLanguage(node, this.options.language);
-      
+      this.options.language = getLanguage(this.options.language, node);
+
       this.#extractedData = this.#collectNode(node);
+      if( this.#extractedData.isEmpty && options.useAriaLabels !== false )
+        this.#extractedData = new NormalizedExtract([...node.querySelectorAll('[aria-label]')].map(n=>n.ariaLabel).join(' '));
 
       this.#extractedData.applyReplacements(this.#replacements);
 
@@ -473,7 +475,6 @@
       const utterances = this.#extractedData.getUtterances(mergeUtteranceOptions(this.options,DEFAULT_OPTIONS)).filter(u=>!!u);
       const res = [];
       let prev = {};
-
       for( const u of utterances ) {
         if( prev.pitch == u.pitch
             && prev.rate == u.rate
@@ -485,8 +486,9 @@
           prev.text += ' ' + u.text;
           prev.htmlElements.append(u.htmlElements, startOffset);
         }
-        else
+        else {
           res.push(prev=u);
+        }
       }
       return res;
     }
@@ -749,10 +751,10 @@
         if( !element ) return;
         if( element.nodeName == '#text' ) element = element.parentElement;
         if( !(element instanceof HTMLElement) ) {
-          console.log('cannot highlight non-HTMLElement', element);
+          //console.log('cannot highlight non-HTMLElement', element);
           return;
         }
-        console.log('highlighting', element);
+        //console.log('highlighting', element);
 
         if( !element ) 
           return;
@@ -769,7 +771,7 @@
 
       const u = this.#current[this.#current.progress];        
       //applyHighlighting(u);
-      //console.debug('Speaking:', u.text, u.htmlElement?.nodeName=='#text'? u.htmlElement.parentElement??u.htmlElement : u.htmlElement);
+      console.debug('Speaking:', u.lang, u.text);
 
       window.speechSynthesis.speak(u);
       this.#setPlayed(this.#currentIx, uix??0);
@@ -806,6 +808,7 @@
     }
     #pushUtterances(utterances, k, e) {
       if( utterances.length == 0 ) return;
+
       utterances.progress = -1;
       utterances.key = k;
       utterances.element = e
@@ -835,8 +838,6 @@
       k ??= e.id ?? e.className ?? e.nodeName;
       if( u.utterances.length > 0 )
         this.#pushUtterances(u.utterances, k, e);
-      else if( options.useAriaLabels !== false )
-        this.#pushText([...e.querySelectorAll('[aria-label]')].map(ce=>ce.ariaLabel).join(' '), k, options, e);
       else
         this.#pushText('Kein Text.', k, options, e);
     }
