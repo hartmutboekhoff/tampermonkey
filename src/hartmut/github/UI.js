@@ -16,7 +16,8 @@
     // ================================================
     console.log('initializing mutation-reactions');
     //window.onMutation('selector', reaction);
-      window.onMutation('a[href^="https://cue.funke.cue.cloud/"]', {
+    // copy Link to Clipboard
+    window.onMutation('a[href^="https://cue.funke.cue.cloud/"]', {
       runOnLoad: true,
       listeners: {
         click: ev=>{
@@ -39,8 +40,8 @@
             });
         }
       }
-    });
-
+    });  
+  
   
     // ================================================
 

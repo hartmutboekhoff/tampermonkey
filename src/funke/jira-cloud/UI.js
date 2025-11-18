@@ -10,12 +10,23 @@
     // ================================================
     console.log('initializing read-out elements');
     //window.registerForReadOut('selector');
+
     window.registerForReadOut('div[data-editor-container-id="issue-description-editor"]', {
       exclude: 'a img',
     });
-    window.registerForReadOut('div[data-testid="issue.activity.comments-list"] > div > span > div > div:nth-child(n+2)', {
-      exclude: ['button'],
-      childElements: {
+
+    window.registerForReadOut('div[data-testid="issue.activity.comments-list"] > div > span > div > div', {
+      exclude: [
+        'button', 
+        '[data-testid="comment.ui.header.avatar"]',
+        '[data-vc="avatar-image"]',
+      ],
+      extract: node=>([
+        node.querySelector('span > [data-testid="profilecard-next.ui.profilecard.profilecard-trigger"]'),
+        node.querySelector('[data-testid="issue-timestamp.relative-time"]'),
+        node.querySelector('[data-testid^="issue-comment-base.ui.comment.ak-comment."]')
+      ]),
+      _childElements: {
         'h3': {
           extract: node=>node.querySelectorAll('span>div, span>span'),
         }
