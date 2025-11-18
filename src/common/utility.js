@@ -242,25 +242,26 @@ function highlightInputFields() {
   document.querySelectorAll('input,select,textarea,button').forEach(e=>e.classList.toggle('GM-input-field'));
 }
 
-function blinkElement(el, style) {
+function blinkElement(el, style, timeout=5000) {
   if( typeof style == 'string' ) style = {backgroundColor: style};
-    
+
   const oldStyle = {};
   for( const sn in style ) {
     oldStyle[sn] = el.style[sn];
     el.style[sn] = style[sn];
   }
-  const oldTransitionh = el.style.transition;
+  const oldTransition = el.style.transition;
   el.style.transition = '';
   window.setTimeout(()=>{
     for( const sn in oldStyle ) {
       el.style[sn] = oldStyle[sn];
     }
-    el.style.transition = 'all 2s ease-in-out 0.5s';
-  }, 1000);
-  window.setTimeout(()=>{
-    el.style.transition = oldTransition;
-  }, 3000);
+    el.style.transition = 'all 3s ease-in-out 0.5s';
+
+    window.setTimeout(()=>{
+      el.style.transition = oldTransition;
+    }, 3000);
+  }, timeout>500?timeout:500);
   
 }    
 

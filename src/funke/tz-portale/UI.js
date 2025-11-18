@@ -38,11 +38,11 @@
 
           const oldArticleIdPattern = /https:\/\/cue\.funke\.cue\.cloud\/cue-web\/#\/main\?uri=\/webservice\/escenic\/content\/2\d{8}/;
           if( oldArticleIdPattern.test(ev.target.href) ) {
-            blinkElement(ev.target, {backgroundColor:'#ff4', textDecoration:'line-through'});
+            blinkElement(ev.target, {backgroundColor:'#ff4', textDecoration:'line-through'}, 30000);
           }
           else {
             navigator.clipboard.writeText(ev.target.href)
-              .then(result=>blinkElement(ev.target, '#8f4'))
+              .then(result=>blinkElement(ev.target, '#8f4', 30000))
               .catch(reason=>{
                 blinkElement(ev.target, '#f44');
                 console.log(reason);
