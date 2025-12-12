@@ -18,15 +18,22 @@
     
     
     window.addEventListener('click', ev=>{
-      if( ev.target.id == GM_DownloadButtonId ) return;
+      if( ev.target.nodeName != 'IMG' || ev.target.id == GM_DownloadButtonId ) return;
       const imgs = document.getElementsByTagName('img');
+console.log(imgs);
       if( imgs?.[0] ) {
-        const l = document.createElement('a');
-        l.id = GM_DownloadButtonId;
-        l.href = imgs[0].src;
-        l.download = dateToFilename();
-        l.innerText = "Hier klicken";
-        document.body.appendChild(l);
+        const l = document.getElementById(GM_DownloadButtonId) ?? document.createElement('a');
+        if( l.id != GM_DownloadButtonId ) {
+          console.log('creating download-link');
+          l.id = GM_DownloadButtonId;
+          l.href = imgs[0].src;
+          l.download = dateToFilename();
+          l.innerText = "Hier klicken";
+          document.body.appendChild(l);
+          document.body.classList.add('downloaded');
+        }
+        else
+          console.log('download link present', l.download);
         l.click();
         //document.body.removeChild(l);
       }

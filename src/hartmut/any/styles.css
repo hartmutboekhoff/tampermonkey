@@ -31,3 +31,7 @@
   transform-origin: left;
   width: 40%;
 }
+
+article.hbo-marked {
+  background-color: #faf !important;
+}

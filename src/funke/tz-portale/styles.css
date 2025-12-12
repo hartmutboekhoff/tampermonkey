@@ -111,3 +111,22 @@ body.debug-compact .debug-component-variant-hidden:not(.show-anyway)>:nth-child(
   background-color: rgba(255,255,255,60%);
   background-blend-mode: color;
 }
+
+body {
+  counter-rerset: component-counter;
+}
+
+div.debug-component {
+  counter-increment: component-counter;
+}
+div.debug-component div.show-type::before {
+	content: counter(component-counter);
+	display: inline-block;
+	background-color: yellow;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	color: black;
+	text-align: center;
+	margin-right: 1em;
+}

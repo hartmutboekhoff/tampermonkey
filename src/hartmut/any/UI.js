@@ -77,6 +77,13 @@
   
     // ================================================
 
+    window.addEventListener('click', ev=>{
+      if( !ev.altKey ) return;
+      const art = ev.target.closest('article');
+      if( art ) {
+        art.classList.toggle('hbo-marked');
+      }
+    });
 
   });
 })();

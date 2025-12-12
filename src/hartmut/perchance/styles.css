@@ -1,1 +1,13 @@
 /* @printCompiledCss = false */
+
+body:has(#GM_DownloadButton) {
+  opacity:.2;
+}
+body:has(#GM_DownloadButton):hover {
+  opacity:1;
+}
+body:has(#GM_DownloadButton):hover img {
+  outline: 15px solid #6f6;
+  box-sizing: border-box;
+  outline-offset: -20px;
+}
