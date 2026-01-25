@@ -1,4 +1,5 @@
 (function(){
+  
   GM_sessionStorage.setItem('language', 'de-DE');
   
   const issueKeyToDate = {
@@ -182,7 +183,7 @@
 
     console.log('initializing mutation-reactions');
     window.onMutation({
-      ['MAT-ROW.mat-row']: {
+      'MAT-ROW.mat-row': {
         callback: e=>{
             // Escenic Accounts
             if( !!e.innerText.match(/escenic/i)?.[0] ) {
@@ -198,14 +199,14 @@
             
           },
       },
-      [':is(.jqx-grid-group-collapse,.jqx-grid-group-expand)+.jqx-grid-group-cell']: {
+      ':is(.jqx-grid-group-collapse,.jqx-grid-group-expand)+.jqx-grid-group-cell': {
         className: 'grouped-line',
         callback: function(e){
             if( e.innerText.indexOf('FT_Support_TZ-Digital') >= 0 ) 
               e.classList.add('support');
           },
       },
-      [':not(:is(.jqx-grid-group-collapse,.jqx-grid-group-expand))+.jqx-grid-group-cell']: {
+      ':not(:is(.jqx-grid-group-collapse,.jqx-grid-group-expand))+.jqx-grid-group-cell': {
         callback: function(e){
             const p = e.parentNode;
             // escenic Hervorhebung
@@ -222,7 +223,7 @@
               e.classList.add('assigned-to-me');
           },
       },
-      ['div#GroupBoxAssignment']: {
+      'div#GroupBoxAssignment': {
       	runOnLoad: true,
       	callback: function(e){
       	  addAssignToButton('assign-to-current-user', 'mir zuweisen', 'FT_Support_TZ-Digital', 'Boekhoff, Hartmut');
@@ -248,7 +249,7 @@
                       setTimeout(()=>document.getElementById('ComplexTextSolutionTextHtmlEditor_ExtenderContentEditable')?.focus(),2000)),
         }
       },
-      ['.no-local-login-identity-provider-container']: {
+      '.no-local-login-identity-provider-container': {
         runOnLoad: true,
         callback: e=>{
           [...e.children].forEach(d=>{
@@ -257,6 +258,24 @@
           });
         },
       },
+      'a[href^="https://cue.funke.cue.cloud/"]': {
+        runOnLoad: true,
+        listeners: {
+          click: ev=>{
+            ev.preventDefault();
+            ev.stopPropagation();
+            
+            navigator.clipboard.writeText(ev.target.href)
+              .then(result=>{
+                blinkElement(ev.target, {backgroundColor: '#8f4'}, 30000);
+              })
+              .catch(reason=>{
+                blinkElement(ev.target, {backgroundColor: '#f44', })
+                console.log(reason);
+              });
+          }
+        }
+      },     
     });
     
     //=================================

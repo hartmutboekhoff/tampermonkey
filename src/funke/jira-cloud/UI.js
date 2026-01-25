@@ -37,7 +37,7 @@
 
     // cards on board
     window.registerForReadOut('div[data-test-id="software-board.board-area"] section li', {
-      readHidden: true,
+      readHidden: false,
       exclude: ['img', 'span[id$="-tooltip"]'],
       childElements: {
         'a': {
