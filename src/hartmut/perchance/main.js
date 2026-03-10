@@ -8,6 +8,8 @@
 // @grant        addStyle
 // @grant        unsafeWindow
 
+// @include      https://perchance.org/*
+// @include      https://*.perchance.org/*
 // @include      https://image-generation.perchance.org/*
 
 // @downloadURL          http://localhost:3000/hartmut/perchance/main.js

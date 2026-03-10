@@ -1058,10 +1058,12 @@
       }
 
       if( !element ) return undefined;
-      
+
       return this.#storagePull()
         .map(s=>({
-          ancestor:element.closest(s.selector),
+          ancestor: element.matches(s.selector)
+                      ? element
+                      : element.closest(s.selector),
           options:s.options,
           selector:s.selector
         }))

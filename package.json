@@ -1,0 +1,6 @@
+{
+  "name": "tampermonkey-script-server",
+  "scripts":   {
+    "start": "node dev/bin/www"
+  }
+}

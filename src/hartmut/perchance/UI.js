@@ -48,7 +48,13 @@ console.log(imgs);
     console.log('initializing read-out elements');
     //GM_sessionStorage.setItem('language', 'de-DE');
     //window.registerForReadOut('selector');
-    
+    window.registerForReadOut('textarea', {language:'en-US'});
+    window.registerForReadOut('div.imageCtn', {
+      language:'en-US',
+      extract: node=>node.dataset.prompt
+    });
+
+
 
     // ================================================
     console.log('initializing mutation-reactions');

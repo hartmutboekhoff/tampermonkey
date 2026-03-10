@@ -116,7 +116,7 @@ div[data-testid="issue-view-product-templates-default.ui.foundation-content.foun
 div[data-testid="issue-view-layout-templates-default.ui.foundation-content.foundation-content-wrapper"] h1 {
   font-size: 3em;
   white-space: nowrap;
-  color: white;
+  color: white !important;
 }
 
 
