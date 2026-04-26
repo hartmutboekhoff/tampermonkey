@@ -9,6 +9,11 @@
 // @grant        unsafeWindow
 
 // @include      https://image-generation.perchance.org/*
+// @include      https://*.perchance.org/*
+// @include      https://perchance.org/*
+// @include      perchance.org/*
+
+
 
 // @downloadURL          http://localhost:3000/hartmut/perchance/main.js
 // @updateURL            http://localhost:3000/hartmut/perchance/main.js

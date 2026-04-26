@@ -677,6 +677,10 @@
       }
     }
     TEXTAREA(node) {
+      if( node.selectionStart != node.selectionEnd ) {
+        const t = node.value.slice(node.selectionStart, node.selectionEnd).trim();
+        if( t != '' ) return t;
+      }
       return node.value;
     }
     SELECT(node) {

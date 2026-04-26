@@ -11,3 +11,12 @@ body:has(#GM_DownloadButton):hover img {
   box-sizing: border-box;
   outline-offset: -20px;
 }
+
+body.attention-wrong-isp {
+  border: 20px solid red;
+  padding: 20px;
+  background-color: #fa0 !important;
+}
+attention-wrong-isp div {
+  background-color: #fa0 !important;
+}

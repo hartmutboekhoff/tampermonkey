@@ -50,6 +50,7 @@
 
 
 // @require         http://localhost:3000/funke/tz-portale/UI.js
+// @require         http://localhost:3000/funke/tz-portale/tools.js
 
 // ==/UserScript==
 

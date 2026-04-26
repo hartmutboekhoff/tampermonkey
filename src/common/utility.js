@@ -158,6 +158,8 @@ function getLanguage(...languages) {
 }  
 
 function highlightDomElements() {
+console.log('highlighting ad-hoc DOM Elements');
+  
   const dialogHtml = `
 <form method="dialog">
   <h1>Elemente hervorheben</h1>
@@ -266,9 +268,101 @@ function blinkElement(el, style, timeout=5000) {
 }    
 
 
+function initializeUsageTracking(modes) {
+  const PREFIX = 'usage_';
+
+  const Modes = modes?.map(m=>({...m})) ??
+    [
+      {threshold: 0, interval: 60, warn:false},
+      {threshold: 60, interval: 60, warn:true},
+      {threshold: 90, interval: 30, warn:true},
+      {threshold: 120, interval: 10, warn: true}
+    ];
+
+  let currentMode;
+  let timer;
+
+  // track every minute
+  setInterval(logUsage, 60*1000);
+  // start monitor
+  setUsageMonitor(Modes[0]);
+
+  //--------
+  function logUsage(date) {
+    if( !date ) date = new Date();
+    const duration = (((new Date()).valueOf() - date.valueOf()) / (60*1000) | 0) || 1;
+    localStorage.setItem(PREFIX + (date.valueOf() / (60*1000) | 0), duration); 
+    console.log('logging usage:', duration, date, new Date());
+  }
+  function getUsageStats() {
+    const minutes = [];
+    for( let i = 0 ; i < localStorage.length ; i++ ) {
+      const k = localStorage.key(i++);
+      if( k.startsWith(PREFIX) )
+        minutes.push({minute: +k.replace(PREFIX, ''), duration: +localStorage.getItem(k)});
+    }
+    minutes.sort((a,b)=>a.minute - b.minute);
+    return minutes.reduce((agg,{minute, duration})=>{
+      if( agg.at(-1)?.end >= minute ) {
+        const stat = agg.at(-1);
+        stat.end = minute + duration;
+        stat.duration = stat.end - stat.minute;
+      }
+      else {
+        agg.push({minute, duration, end:minute+duration});
+      }
+      return agg;
+    }, [])
+    .reduce((agg, {minute, duration})=>{
+      if( minute < agg.start ) agg.start = minute;
+      agg.duration += duration;
+      return agg;
+    }, {start: Infinity, duration:0});
+  }
+  function setUsageMonitor(mode) {
+    console.log('inializing usage monitor', mode);
+    if( timer ) clearInterval(timer);
+    
+    timer = setInterval(()=>{
+      const usage = checkUsageLimits(mode.threshold, mode.warn, mode.action);
+      console.log('checking usage', usage, mode);
+      
+      const m = Modes
+        .sort((a,b)=>b.threshold-a.threshold)
+        .find(t=>usage>=t.threshold);
+      if( m != currentMode )
+        setUsageMonitor(m);
+    }, mode.interval*1000);
+    currentMode = mode;
+  }
+
+  function checkUsageLimits(limit, warn, action) {
+    const stats = getUsageStats();
+    console.log('usage:', stats);
+
+    if( typeof action == 'function' && stats.duration > limit ) {
+      const date = new Date();
+      try {
+        action(stats.duration, new Date(stats.minutes*60*1000)); 
+      } catch (e) {
+        console.error('Usage-monitor: error while executing custom function.', e);
+        alert('ERROR: while executing custom function. \n\n'+e);
+      }
+      logUsage(date);
+    }
+    else if( warn && stats.duration > limit ) {
+      const date = new Date();
+      alert(`You have been using this site for ${stats.duration} minutes since ${new Date(stats.start*60*1000)}`);
+      logUsage(date);
+    }
+    return stats.duration;
+  }
+}
+
 window.addEventListener('load', ()=>{
-  window.addKeyHandler('F8', ()=>highlightDomElements());
-  window.addKeyHandler('shift+F8', ()=>highlightInputFields(), {excludeFormFields:false});
+console.log('F8 keyhandler registered');
+  window.addKeyHandler('F8', ()=>highlightDomElements(), {excludeFormFields:false});
+  //window.addKeyHandler('Shift+F8', ()=>highlightInputFields(), {excludeFormFields:false});
   window.registerForReadOut('.read-me-please', {language:getLanguage()});
 })
 // ------------------------------------------------------------------

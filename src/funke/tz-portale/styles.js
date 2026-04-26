@@ -1,3 +1,5 @@
+console.log('%cDEPRECATED /funke/tz-portale/styles.js', 'background-color: red, color: white; font-size: 200%;');
+
 console.log('HBo Tampermonkey', 'styles.js', 'Version '+GM_info.script.version);
 
 function addStyle(css) {

@@ -1,3 +1,5 @@
+console.log('%cDEPRECATED ??? /funke/tz-portale/styles.js', 'background-color: red, color: white; font-size: 200%;');
+
 (function(){
   function showInfo() {
     const s = document.createElement('script');
