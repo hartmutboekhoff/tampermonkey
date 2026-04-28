@@ -20,3 +20,20 @@ body.attention-wrong-isp {
 attention-wrong-isp div {
   background-color: #fa0 !important;
 }
+
+
+
+div[contenteditable="true"],
+input[type="text"],
+textarea {
+  outline: 2px solid #88c;
+  outline-offset: -2px;
+  background-color: #fda;
+  color: black;
+}
+div[contenteditable="true"]:focus,
+input[type="text"]:focus,
+textarea:focus {
+  outline: 4px solid #00a;
+  outline-offset: -3px;
+}
