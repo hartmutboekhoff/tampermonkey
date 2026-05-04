@@ -9,6 +9,14 @@
         id_desc: (a,b)=>b.id-a.id,
         url_asc: (a,b)=>a.url.localeCompare(b.url),
         url_desc: (a,b)=>-a.url.localeCompare(b.url),
+        page: (a,b)=>{
+          const aix = pageArticles.findIndex(i=>i.id==a.id);
+          const bix = pageArticles.findIndex(i=>i.id==b.id);
+          return aix == bix ? 0 :
+                 aix < 0? 1 :
+                 bix < 0? -1 : 
+                 aix - bix;
+        }
       }
       function mergeLists(...ls) {
         const merged = {};
@@ -28,7 +36,8 @@
           feed = location.href + feed;
         else if( feed.startsWith(':') )
           feed = location.protocol + feed;
-      
+
+        console.log('fetching feed data from:', feed);
         return await fetch(feed)
           .then(r=>r.status == 200? r.text() : '')
           .then(t=>[...t.matchAll(itemUrlRx)]
@@ -38,6 +47,25 @@
             .filter(article=>!!article.id)
           );
       }
+      function createOverlapTable(names, feeds, compared) {
+        const overlaps = names
+          .map(rowName=>names.reduce((agg,colName)=>(agg[colName]=0, agg),
+                                     {rowName, feed:rowName}));
+        compared.forEach(article=>{
+          overlaps.forEach(row=>{
+            if( article[row.rowName] != ' ' )
+              names.forEach(colName=>{if( article[colName] != ' ' ) ++row[colName]})
+          })
+        });
+        overlaps.unshift(names.reduce((agg,n,ix)=>{
+          agg[n] = feeds[ix].length;
+          return agg;
+        },
+        { feed: 'Artikel im Feed' }));
+        
+        return overlaps;
+      }
+       
       
       const options = typeof feeds.at(-1) == 'object'? feeds.pop() : {};
 
@@ -51,6 +79,7 @@
       const sorter = Sorters[options.sort];
       if( sorter )
         compared.sort(sorter);
+
       const listNames = ['web-page', ...feeds];
       compared.forEach(c=>{
         listNames.forEach((n,ix)=>c[n] = c[ix]? c.id : ' ');
@@ -59,17 +88,11 @@
 
       //console.log(compared);
       console.table(compared, [...listNames, 'path']);
-      
-      const overlaps = listNames.map(n=>listNames.reduce((agg,n2)=>(agg[n2]=0,agg),{feed:n}))
-      compared.forEach(article=>{
-        overlaps.forEach(row=>{
-          if( article[row.feed] != ' ' )
-            listNames.forEach(n=>{if( article[n] != ' ' ) ++row[n]})
-        })
-      });
+
+      const overlaps = createOverlapTable(listNames, [pageArticles, ...feedLists], compared);
       console.table(overlaps, ['feed', ...listNames]);
-        
     }
+    
     const scr = document.createElement('script');
     scr.id = 'HBO_FeedComparer';
     scr.appendChild(document.createTextNode(compareWithFeeds.toString()));
