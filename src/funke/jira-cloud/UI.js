@@ -1,7 +1,6 @@
 (function(){
   window.addEventListener('load',()=>{
     
-    
     // ================================================
     console.log('initializing shortcut-keys');
     //window.addKeyHandler('Space',ev=>alert('key pressed'));
@@ -38,7 +37,8 @@
     // cards on board
     window.registerForReadOut('div[data-test-id="software-board.board-area"] section li', {
       readHidden: false,
-      exclude: ['img', 'span[id$="-tooltip"]'],
+      reduceUtterances: false,
+      exclude: ['img', 'button', 'span[id$="-tooltip"]'],
       childElements: {
         'a': {
           extract: node=>node.getAttribute('href').slice(8)
@@ -66,6 +66,13 @@
       exclude: 'button'
     });
 
+
+
+    // Karten im STAGE GATE Board
+    window.registerForReadOut('div.idea-card', {
+      exclude: ['img'],
+      extract: node=>node.querySelectorAll('[data-testid="polaris-common.ui.idea-card-v2.header.summary.header"]')
+    });
 
 
     // ================================================
@@ -112,7 +119,7 @@
           el.classList.remove('recently-updated-24', 'recently-updated-48');
 
       }
-    })
+    });
   
       // ================================================
 

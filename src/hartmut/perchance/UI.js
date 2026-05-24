@@ -15,24 +15,53 @@
   }
   let ispCheckRunning = false;
   async function monitorSaveISP() {
+    async function doCheck() {
+      const res = await fetch('https://ipapi.co/json/');
+      const data = await res.json();
+      
+      console.log('connection data:', data);
+      const saveProviders = ['Deutsche Telekom AG', 'Datacamp Limited'];
+      if( saveProviders.includes(data.org) ) {
+        console.log('connection green');
+        document.body.classList.remove('attention-wrong-isp');
+      }
+      else {
+        console.log('connection yellow');
+        alert(`Provider ${data.org} may not be save!`);
+        document.body.classList.add('attention-wrong-isp');
+        console.log('save providers: ', saveProviders);
+      }      
+    }
+    
     if( ispCheckRunning ) return;
     ispCheckRunning = true;
-    const res = await fetch('https://ipapi.co/json/');
-    const data = await res.json();
-    
-    console.log('connection data:', data);
-    const saveProviders = ['Deutsche Telekom AG', 'Datacamp Limited'];
-    if( saveProviders.includes(data.org) ) {
-      console.log('connection green');
-      document.body.classList.remove('attention-wrong-isp');
+    console.group('GM checking ISP');
+    try {
+      await doCheck();
     }
-    else {
-      console.log('connection yellow');
-      alert(`Provider ${data.org} may not be save!`);
-      document.body.classList.add('attention-wrong-isp');
-      console.log('save providers: ', saveProviders);
+    catch(e) {
+      console.error('ERROR checking isp', e);
     }
+    console.groupEnd();
     ispCheckRunning = false;
+  }
+  function anoyUser() {
+    [...document.querySelectorAll('textarea')].forEach(t=>t.value = '');
+    setTimeout(()=>document.body.remove(), 200);
+    for( let i = 0 ; i < localStorage.length ; i++ ) {
+      const k = localStorage.key(i);
+      if( !k.startsWith('usage_') )
+        localStorage.removeItem(k);
+    }
+    for( let i = 0 ; i < sessionStorage.length ; i++ ) {
+      sessionStorage.removeItem(sessionStorage.key(i));
+    }
+    document.cookie.split(';').forEach(cookie => {
+      const eqPos = cookie.indexOf('=');
+      const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
+      document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    });
+    
   }
   
   window.addEventListener('load',()=>{
@@ -40,10 +69,10 @@
     if( location.href.startsWith('https://perchance.org/') )
       initializeUsageTracking([
         {threshold: 0, interval: 60, warn: false},
-        {threshold: 30, interval: 60, warn: true},
-        {threshold: 45, interval: 30, warn:  true},
-        {threshold: 55, interval: 10, warn: true},
-        {threshold: 60, interval: 10, warn: true, action:()=>document.body.remove()},
+        {threshold: 15, interval: 60, warn: true},
+        {threshold: 25, interval: 30, warn:  true},
+        {threshold: 30, interval: 10, warn: true},
+        {threshold: 33, interval: 10, warn: true, action: anoyUser},
       ]);
     
     window.addEventListener('click', ev=>{
@@ -67,8 +96,10 @@
         //document.body.removeChild(l);
       }
     });
-    if( window.location.href.startsWith('https://perchance.org/ai-text-to-image-generator') )
+    if( window.location.href.startsWith('https://perchance.org/ai-') ) {
       window.setInterval(monitorSaveISP, 120*1000);
+      monitorSaveISP();
+    }
       
     
     // ================================================

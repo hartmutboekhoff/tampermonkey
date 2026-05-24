@@ -79,20 +79,27 @@
       });
     }
     applyListeners(elements) {
-      if( this.#reaction.listeners != undefined )
-        elements.forEach(e=>{
-          e.__GM_Listeners ??= {};
-          for( const k in this.#reaction.listeners ) {
-            if( e.__GM_Listeners[k] != true ) {
-              e.__GM_Listeners[k] = true;
-              const l = this.#reaction.listeners[k];
-              if( typeof l == 'function' )
-                e.addEventListener(k,ev=>void l(ev));
-              else if( typeof l == 'string' )
-                e.addEventListener(k,()=>void eval(l))
-            }
+      if( this.#reaction.listeners == undefined ) return;
+      elements.forEach(e=>{
+        e.__GM_Listeners ??= {};
+        for( const k in this.#reaction.listeners ) {
+          if( e.__GM_Listeners[k] == true ) continue;
+          e.__GM_Listeners[k] = true;
+          const l = this.#reaction.listeners[k];
+          try {
+            if( typeof l == 'function' )
+              e.addEventListener(k,ev=>void l(ev));
+            else if( typeof l == 'string' )
+              e.addEventListener(k,()=>void eval(l))
+            else
+              continue;
+            console.log('event-listenr', k, 'for element', e, l?.toString());
           }
-        });
+          catch(err) {
+            console.log('error installing event-listenr', k, 'for element', e, err);
+          }
+        }
+      });
     }
     invokeCallback(elements) {
       if( typeof this.#reaction.callback == 'function' )

@@ -297,7 +297,7 @@ function initializeUsageTracking(modes) {
   function getUsageStats() {
     const minutes = [];
     for( let i = 0 ; i < localStorage.length ; i++ ) {
-      const k = localStorage.key(i++);
+      const k = localStorage.key(i);
       if( k.startsWith(PREFIX) )
         minutes.push({minute: +k.replace(PREFIX, ''), duration: +localStorage.getItem(k)});
     }
@@ -330,7 +330,7 @@ function initializeUsageTracking(modes) {
       const m = Modes
         .sort((a,b)=>b.threshold-a.threshold)
         .find(t=>usage>=t.threshold);
-      if( m != currentMode )
+      if( m && m != currentMode )
         setUsageMonitor(m);
     }, mode.interval*1000);
     currentMode = mode;

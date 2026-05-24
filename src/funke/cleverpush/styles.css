@@ -1,0 +1,13 @@
+/* @printCompiledCss = false */
+
+
+input[type="email"] {
+  outline: 4px solid #fa0;
+  outline-offset: 3px;
+  background-color: #ffa;
+  color: black;
+}
+input[type="email"]:focus {
+  outline: 4px solid #66f !important;
+  outline-offset: 3px !limportant;
+}

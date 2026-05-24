@@ -239,3 +239,12 @@ div#groupsheaderHLGrid div {
   border-radius: 5px;
   background-color: #afa;
 }
+
+
+
+#DateTimeControlREGISTRATIONTIMEcalendarTB,
+#tbTextBoxBezugsnummermitTag {
+  font-weight: bold;
+  outline: 4px solid #a0a;
+  outline-offset: 2px;
+}
