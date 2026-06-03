@@ -54,6 +54,46 @@
     
     console.log(lis);
   }
+  function setXhtmlInsertHelper() {
+    const xhtmlRoot = document.querySelector('field-xhtmlinput');
+    const xhtml = xhtmlRoot?.shadowRoot.getElementById('xhtmltextarea');
+    const form = xhtmlRoot?.closest('cue-field-editors');
+    const title = form?.querySelector('textarea[name="title"]');
+    const type = form?.querySelector('textarea[name="cmp_name"]');
+
+    if( xhtml && type && title ) {
+      xhtml.addEventListener('change', ev=>onInsertXhtml(ev,xhtml,title,type));
+      [xhtml,title, type].forEach(e=>e.style.outline = '5px solid #fa0');
+    }
+  }
+  function onInsertXhtml(ev, xhtmlField, titleField, typeField) {
+    const titleRx = /^([^<]*)(.*)$/si;
+    const srcRx = /\bsrc=(['"])(.*?)\1[ >]/;
+    const srcTypeMap = {
+      'dpa-infocom.net': 'dpa',
+      'dpa-sportslive.com': 'dpa',
+    }
+    
+    const value = ev.target.value;
+    const [,title,xhtml] = value.match(titleRx) ?? [];
+    
+    if( !xhtml ) return;
+    
+    if( title && titleField.value == '' ) {
+      titleField.value = title.replace(/^[\s"'']*/s, '').replace(/[\s'"]*$/s, '');
+      xhtmlField.value = xhtml.replace(/^[\s"'']*/s, '').replace(/[\s'"]*$/s, '');
+      titleField.focus();
+    }
+    if( typeField.value == '' ) {
+      const src = xhtml.match(srcRx)?.[2];
+      if( src ) {
+        Object.entries(srcTypeMap).forEach(([k,v])=>{
+          if( src.indexOf(k) >= 0 )
+            typeField.value = v;
+        });
+      }
+    }
+  }
   
   function highlightActiveDates(el) {
     const [d,t] = [...el.querySelectorAll('input')].map(i=>i.value);
@@ -97,6 +137,10 @@
     });
     window.onMutation('cue-field[data-test-value="com.escenic.uniqueName"] textarea', {
       callback:el=>(el.focus(),el.select()),
+      runOnLoad: true,
+    });
+    window.onMutation('field-xhtmlinput', {
+      callback: setXhtmlInsertHelper,
       runOnLoad: true,
     });
   

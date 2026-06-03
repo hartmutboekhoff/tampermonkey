@@ -1,0 +1,14 @@
+/* @printCompiledCss = false */
+
+
+div.panel select,
+div.widgetList select {
+  color: black;
+  outline: 4px solid orange;
+  outline-offset: 2px;
+}
+
+div.panel.header {
+  background-color: #040;
+  color: white;
+}
