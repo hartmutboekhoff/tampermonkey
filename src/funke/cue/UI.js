@@ -1,4 +1,23 @@
 (function(){
+
+  function simulateKey() {
+    const keyboardEvent = document.createEvent('KeyboardEvent');
+    const initMethod = typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? 'initKeyboardEvent' : 'initKeyEvent';
+        
+    keyboardEvent[initMethod](
+      'keydown', // event type: keydown, keyup, keypress
+      true, // bubbles
+      true, // cancelable
+      window, // view: should be window
+      false, // ctrlKey
+      false, // altKey
+      false, // shiftKey
+      false, // metaKey
+      40, // keyCode: unsigned long - the virtual key code, else 0
+      0, // charCode: unsigned long - the Unicode character associated with the depressed key, else 0
+    );
+    document.dispatchEvent(keyboardEvent);    
+  }
   
   function openTextContextMenu() {
     const b1 = document.activeElement
@@ -54,7 +73,7 @@
     
     console.log(lis);
   }
-  function setXhtmlInsertHelper() {
+  function initXhtmlInsertHelper() {
     const xhtmlRoot = document.querySelector('field-xhtmlinput');
     const xhtml = xhtmlRoot?.shadowRoot.getElementById('xhtmltextarea');
     const form = xhtmlRoot?.closest('cue-field-editors');
@@ -140,7 +159,7 @@
       runOnLoad: true,
     });
     window.onMutation('field-xhtmlinput', {
-      callback: setXhtmlInsertHelper,
+      callback: initXhtmlInsertHelper,
       runOnLoad: true,
     });
   
