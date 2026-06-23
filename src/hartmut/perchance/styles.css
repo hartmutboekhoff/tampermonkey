@@ -37,3 +37,9 @@ textarea:focus {
   outline: 4px solid #00a;
   outline-offset: -3px;
 }
+
+option[value="ref:optionKeyName:Professional Photo"],
+option[value="ref:optionKeyName:𝗡𝗼 𝘀𝘁𝘆𝗹𝗲"] {
+  background-color: #99d;
+  
+}

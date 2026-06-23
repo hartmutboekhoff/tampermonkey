@@ -1,6 +1,16 @@
 /* @printCompiledCss = false */
 
 
+ul.context-menu--list {
+  background-color: #333 !important;
+  color: #fff !important;
+  font-weight: 500;
+}
+li.context-menu--list-item:hover {
+  background-color: #338 !important;
+}
+
+
 cue-metadata-panel-loader > * {
   outline: 4px solid #008;
   outline-ofset 2px;
@@ -160,6 +170,7 @@ cue-field[data-test-value="com.escenic.uniqueName"] textarea {
 }
 
 
+
 @keyframes pulsar {
   50% {
     transform: scale(120%);
@@ -172,3 +183,5 @@ cue-field[data-test-value="com.escenic.uniqueName"] textarea {
     background-color: yellow;
   }
 }
+
+

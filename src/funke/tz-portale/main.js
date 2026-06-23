@@ -29,6 +29,9 @@
 // @match        https://*.braunschweiger-zeitung.de/*
 // @match        https://*.harzkurier.de
 // @match        https://*.harzkurier.de/*
+// @match        https://*.talzeit.de
+// @match        https://*.talzeit.de/*
+
 
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText

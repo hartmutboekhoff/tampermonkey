@@ -116,6 +116,7 @@
       extract: node=>node.dataset.prompt,
       language: 'en-US'
     });
+    window.registerForReadOut('div#outputEl', {language: 'en-US'});
 
 
 
