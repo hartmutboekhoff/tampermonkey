@@ -43,3 +43,22 @@ option[value="ref:optionKeyName:𝗡𝗼 𝘀𝘁𝘆𝗹𝗲"] {
   background-color: #99d;
   
 }
+
+div[data-character-id="-1"] {
+  background-color: #fa6;
+}
+.deleteButton:hover {
+	background-color: red;
+	padding: 3px;
+	border-radius: 5px;
+}
+.info {
+	background-color: #aaa;
+}
+div[data-character-id="-1"] .info {
+  background-color: #c84
+}
+
+div.thread.selected > div.info {
+  background-color: #fa6;
+}

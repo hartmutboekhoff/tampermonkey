@@ -169,7 +169,18 @@ cue-field[data-test-value="com.escenic.uniqueName"] textarea {
   box-shadow: 1px 1px 5px 5px #ec0;
 }
 
-
+[contenteditable="true"] {
+    outline: 3px solid blue !important;
+}
+[contenteditable="true"]:focus {
+    background-color: #ffa !improtant;
+    color: black !important;
+    outline: 4px solid purple !important;
+}
+[data-testid="insert-menu"] {
+    background-color: green !important;
+    color: white !important;
+}
 
 @keyframes pulsar {
   50% {
