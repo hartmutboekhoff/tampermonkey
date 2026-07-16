@@ -121,7 +121,9 @@
                                    extract: node=>node.querySelector('div>div>p'),
                                  },
                                }
-                             });
+                            });
+    window.registerForReadOut('[contenteditable="true"]');
+
     window.registerForReadOut('.tabControlHeader span', {language});
     // Zeile im Reiter für reservierte Aufgaben.
     window.registerForReadOut('div.jqx-grid-cell.jqx-item', {language});

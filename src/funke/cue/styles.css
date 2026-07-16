@@ -172,7 +172,9 @@ cue-field[data-test-value="com.escenic.uniqueName"] textarea {
 [contenteditable="true"] {
     outline: 3px solid blue !important;
 }
-[contenteditable="true"]:focus {
+[contenteditable="true"]:focus,
+input:focus,
+textarea:focus {
     background-color: #ffa !improtant;
     color: black !important;
     outline: 4px solid purple !important;
@@ -180,6 +182,10 @@ cue-field[data-test-value="com.escenic.uniqueName"] textarea {
 [data-testid="insert-menu"] {
     background-color: green !important;
     color: white !important;
+}
+
+CUE-FORM-PROPERTY-ARRAY#section-parameters DIV.value:has(:focus) {
+  background-color: yellow;
 }
 
 @keyframes pulsar {
@@ -194,5 +200,6 @@ cue-field[data-test-value="com.escenic.uniqueName"] textarea {
     background-color: yellow;
   }
 }
+
 
 

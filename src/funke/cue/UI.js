@@ -142,8 +142,7 @@
       language: 'de-DE',
       extract: node=>([...node.querySelectorAll('[data-testid="author"]'),...node.querySelectorAll('[data-testid="date"],[data-testid="time"]')].map(n=>n.innerText).join(' '))
     });
-  
-    
+    window.registerForReadOut('input, textarea, [contenteditable="true"], .search-item', {language:'de-DE'});
 
     // ================================================
     console.log('initializing mutation-reactions');
