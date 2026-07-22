@@ -1,22 +1,149 @@
 (function(){
 
-  function simulateKey() {
-    const keyboardEvent = document.createEvent('KeyboardEvent');
-    const initMethod = typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? 'initKeyboardEvent' : 'initKeyEvent';
+  function KeySimulator() {
+    const DELAY = 100;
+    
+    class KeySimulator {
+      #timer;
+      #queue = [];
+      
+      constructor(type, field) {
+        if( type == undefined )
+          [type, field] = ['keydown', document.activeElement];
+        else if( typeof type == 'object' )
+          [type, field] = ['keydown', type];
+        else if( field == undefined )
+          field = document.activeElement;
+
+        this.type = type;
+        this.field = field;
+      }
+      #start() {
+        if( this.#timer != undefined ) return;
+        if( this.#queue.length == 0 ) return;
+        this.#timer = setTimeout(()=>{
+          while( this.#queue.length )
+            this.#next();
+          this.#timer = undefined;
+        },DELAY);
+      }
+      #next() {
+        const key = this.#queue.shift();
+        const ev = new KeyboardEvent(this.type, key);
+console.log('simulating key', ev.key, ev.code, ev, this);
+        this.field.dispatchEvent(ev);
+      }
+      #push(key,code,opts = {}) {
+        this.#pushEventObject({...opts,key,code});
+      }
+      #pushEventObject(opts) {
+        this.#queue.push({...opts});
+        this.#start();
+      }
+      
+      space() {
+        this.#push('Space', 'Space');
+        return this;
+      }
+      backspace() {
+        this.#push('Backspace', 'Backspace');
+        return this;
+      }
+      key(key, code) {
+        if( arguments.length == 1 )
+          this.#pushEventObject(this.#codeToEvent(key));
+        else if( arguments.length == 2 )
+          this.#push(key, code)
+        return this;
+      }
+      #codeToEvent(code) {
+        if( code.match(/^[a-z]$/) ) return {key:`Key${code.toUpperCase()}`, code};
+        if( code.match(/^[A-Z]$/) ) return {key:`Key${code}`, code, shiftKey: true};
+        if( code.match(/^[0-9]$/) ) return {key:`Digit${code}`, code};
+        if( code.match(/^F([1-9]|1[0-2])$/) ) return {key:code, code:''};
+        switch( code ) {
+          case 'Space': 
+          case 'space': 
+          case ' ': 
+            return {key:'Space', code:'Space'};
+
+          case 'Backspace': 
+          case 'backspace': 
+            return {key:'Backspace', code:'Backspace'};
+          
+          case 'escape': 
+          case 'Escape': 
+          case 'esc': 
+            return {key:'Escape', code:'Escape'};
+          
+          case 'enter': 
+          case 'Enter': 
+            return {key:'Enter', code:'Enter'};
+        }
+        return {key:code, code};
+      }
+    }
+    function simulate(args) {
+      let type = 'keydown', field = document.activeElement;
+      let simArgs;
+      switch( args.length ) {
+        case 0: 
+          return;
+        case 1:
+          simArgs = [args[0]];
+          break;
+        case 2:
+          simArgs = [...args].slice(0, 2);
+          break;
+        case 3:
+          if( typeof args[0] == 'object' )
+            field = args[0];
+          else
+            type = args[0];
+          simArgs = [...args].slice(1,3);
+          break;
+        case 4:
+        default:
+          [type, field] = [...args];
+          simArgs = [...args].slice(2,4);
+      }
+      const s = new KeySimulator(type, field);
+      s.key(...simArgs);
+    }
+    function construct(args) {
+      let type = 'keydown', field = document.activeElement;
+      switch( args.length ) {
+        case 0:
+          break;
+        case 1:
+          if( typeof args[0] == 'object' )
+            field = args[0];
+          else
+            type = args[0];
+          break;
+        case 2:
+        default:
+          [type, field] = [...args];
         
-    keyboardEvent[initMethod](
-      'keydown', // event type: keydown, keyup, keypress
-      true, // bubbles
-      true, // cancelable
-      window, // view: should be window
-      false, // ctrlKey
-      false, // altKey
-      false, // shiftKey
-      false, // metaKey
-      40, // keyCode: unsigned long - the virtual key code, else 0
-      0, // charCode: unsigned long - the Unicode character associated with the depressed key, else 0
-    );
-    document.dispatchEvent(keyboardEvent);    
+      }
+      return new KeySimulator(type, field);
+    }  
+
+    if( this.constructor.name == 'KeySimulator' )
+      return construct(arguments);
+    else 
+      sumulate(arguments);
+  }
+
+
+
+
+  function markAsEdited(field) {
+    //const sim = new KeySimulator('keypress', field);
+    //return sim.space().backspace().key('x');
+    
+    field.dispatchEvent(new Event('input'));
+    
   }
   
   function openTextContextMenu() {
@@ -50,12 +177,19 @@
       'nrw wp':           {sort: 43, indent: true  , style: 'nrw'},
       'nrw wr':           {sort: 44, indent: true  , style: 'nrw'},
       'nrw ikz':          {sort: 45, indent: true  , style: 'nrw'},
+      'nrw talzeit':      {sort: 46, indent: true  , style: 'nrw'},
       'thüringen':        {sort: 50, indent: false , style: 'th'},
       'th ta':            {sort: 51, indent: true  , style: 'th'},
       'th otz':           {sort: 52, indent: true  , style: 'th'},
       'th tlz':           {sort: 53, indent: true  , style: 'th'},
       'system':           {sort:100, indent: false , style: 'sys'},
       'zentralredaktion': {sort:  0, indent: false , style: 'zr'},
+      'ab gesamt':        {sort: 70, indent: false, style: 'ab'},
+      'ab b':             {sort: 71, indent: true,  style: 'ab'},
+      'ab hh':            {sort: 72, indent: true,  style: 'ab'},
+      'ab nrw':           {sort: 73, indent: true,  style: 'ab'},
+      'ab ni':            {sort: 74, indent: true,  style: 'ab'},
+      'ab th':            {sort: 75, indent: true,  style: 'ab'},
     };
     const ul = document.querySelector('cue-form-select#organizational-units ul.options');
     if( ul == undefined || ul.sorted == true ) return;
@@ -75,7 +209,7 @@
   }
   function initXhtmlInsertHelper() {
     const xhtmlRoot = document.querySelector('field-xhtmlinput');
-    const xhtml = xhtmlRoot?.shadowRoot.getElementById('xhtmltextarea');
+    const xhtml = xhtmlRoot?.shadowRoot?.getElementById('xhtmltextarea');
     const form = xhtmlRoot?.closest('cue-field-editors');
     const title = form?.querySelector('textarea[name="title"]');
     const type = form?.querySelector('textarea[name="cmp_name"]');
@@ -101,7 +235,7 @@
     if( title && titleField.value == '' ) {
       titleField.value = title.replace(/^[\s"'']*/s, '').replace(/[\s'"]*$/s, '');
       xhtmlField.value = xhtml.replace(/^[\s"'']*/s, '').replace(/[\s'"]*$/s, '');
-      titleField.focus();
+      markAsEdited(titleField);
     }
     if( typeField.value == '' ) {
       const src = xhtml.match(srcRx)?.[2];
@@ -110,6 +244,7 @@
           if( src.indexOf(k) >= 0 )
             typeField.value = v;
         });
+        markAsEdited(typeField);
       }
     }
   }

@@ -104,6 +104,8 @@ cue-form-select#organizational-units ul.options li.th { background-color: #3c3; 
 cue-form-select#organizational-units ul.options li.th.indent { background-color: #6e6; }
 cue-form-select#organizational-units ul.options li.zr { background-color: #faa; }
 cue-form-select#organizational-units ul.options li.sys { background-color: #ccc; }
+cue-form-select#organizational-units ul.options li.ab { background-color: #88d; }
+cue-form-select#organizational-units ul.options li.ab.indent { background-color: #ccf; }
 
 
 
