@@ -117,7 +117,16 @@
       language: 'en-US'
     });
     window.registerForReadOut('div#outputEl', {language: 'en-US'});
+    window.registerForReadOut('.sectionLabel', {language: 'en-US'});
 
+    window.registerForReadOut('body>div>textarea', {language: 'en-US'});
+    window.registerForReadOut('.thread', {
+      children: {
+        '.nameWrapper, .characterName': {
+        }
+      },
+      language: 'en-US'
+    });
 
 
     // ================================================

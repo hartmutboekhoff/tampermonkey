@@ -62,3 +62,11 @@ div[data-character-id="-1"] .info {
 div.thread.selected > div.info {
   background-color: #fa6;
 }
+
+body>div>button {
+  background-color: #88c;
+}
+
+iframe.text-to-image-plugin-image-iframe {
+  border: 5px solid #99d !important;
+}

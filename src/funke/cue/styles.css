@@ -190,6 +190,12 @@ CUE-FORM-PROPERTY-ARRAY#section-parameters DIV.value:has(:focus) {
   background-color: yellow;
 }
 
+.pill-container label {
+    color: black !important;
+    background-color: #eee;
+    font-weight: bold !important;
+}
+
 @keyframes pulsar {
   50% {
     transform: scale(120%);
