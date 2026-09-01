@@ -299,7 +299,7 @@ function initializeUsageTracking(modes) {
     for( let i = 0 ; i < localStorage.length ; i++ ) {
       const k = localStorage.key(i);
       if( k.startsWith(PREFIX) )
-        minutes.push({minute: +k.replace(PREFIX, ''), duration: +localStorage.getItem(k)});
+        minutes.push({minute: +k.replace(PREFIX, ''), duration: Math.abs(+localStorage.getItem(k))});
     }
     minutes.sort((a,b)=>a.minute - b.minute);
     return minutes.reduce((agg,{minute, duration})=>{
