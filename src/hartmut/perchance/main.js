@@ -11,8 +11,6 @@
 // @include      https://perchance.org/*
 // @include      https://*.perchance.org/*
 // @include      https://image-generation.perchance.org/*
-// @include      https://*.perchance.org/*
-// @include      https://perchance.org/*
 // @include      perchance.org/*
 
 

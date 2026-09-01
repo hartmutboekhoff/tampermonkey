@@ -70,3 +70,16 @@ body>div>button {
 iframe.text-to-image-plugin-image-iframe {
   border: 5px solid #99d !important;
 }
+
+#reloadButtonEl:hover {
+	scale: 3;
+	bottom: 1rem !important;
+	right: 1rem !important;
+}
+
+#contentGuardMessageEl {
+  display:none !important;
+}
+#contentGuardSettingsEl {
+  display:block !important;
+}

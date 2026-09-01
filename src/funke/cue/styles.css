@@ -190,6 +190,7 @@ CUE-FORM-PROPERTY-ARRAY#section-parameters DIV.value:has(:focus) {
   background-color: yellow;
 }
 
+cue-search-filter-date label,
 .pill-container label {
     color: black !important;
     background-color: #eee;

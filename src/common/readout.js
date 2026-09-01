@@ -464,7 +464,7 @@
       
       this.options.language = getLanguage(this.options.language, node);
 
-      this.#extractedData = this.#collectNode(node);
+      this.#extractedData = this.#collectNode(node) ?? new NormalizedExtract('', node);
       if( this.#extractedData.isEmpty && options.useAriaLabels !== false )
         this.#extractedData = new NormalizedExtract([...node.querySelectorAll('[aria-label]')].map(n=>n.ariaLabel).join(' '));
 
@@ -580,6 +580,8 @@
       catch(e) {
         console.warn(e);
       }
+
+console.log('custom extraction', extracted);
 
       if( extracted instanceof Node ) 
         return {node: extracted};
