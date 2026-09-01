@@ -70,3 +70,8 @@ body>div>button {
 iframe.text-to-image-plugin-image-iframe {
   border: 5px solid #99d !important;
 }
+
+
+.charCard:has(.nsfwTag) {
+  background-color: #800;
+}

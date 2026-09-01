@@ -1105,6 +1105,10 @@
       ['Ctrl+Shift+ShiftLeft'](ev) {
       	this.readSelection();
       }
+      ['Ctrl+Shift+Enter'](ev) {
+        if( ['TEXTAREA', 'INPUT'].includes(ev.target.nodeName) )
+          this.read(ev.target);
+      }
     })(this);
 
     constructor() {
