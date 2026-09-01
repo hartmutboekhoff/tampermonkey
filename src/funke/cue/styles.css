@@ -179,7 +179,7 @@ input:focus,
 textarea:focus {
     background-color: #ffa !improtant;
     color: black !important;
-    outline: 4px solid purple !important;
+    outline: 8px solid purple !important;
 }
 [data-testid="insert-menu"] {
     background-color: green !important;
