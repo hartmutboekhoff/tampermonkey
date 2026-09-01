@@ -83,3 +83,8 @@ iframe.text-to-image-plugin-image-iframe {
 #contentGuardSettingsEl {
   display:block !important;
 }
+
+
+.charCard:has(.nsfwTag) {
+  background-color: #800;
+}

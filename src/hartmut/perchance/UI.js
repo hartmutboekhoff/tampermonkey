@@ -160,6 +160,7 @@
       extract: node=>node.querySelectorAll('.name, .characterName'),
       language: 'en-US'
     });
+    window.registerForReadOut('.charCard .body .name, .charCard .body .desc', {language: 'en-US'});
 
 
     // ================================================
