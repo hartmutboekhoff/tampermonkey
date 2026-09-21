@@ -10,6 +10,9 @@
 // @grant        unsafeWindow
 
 // @include      https://forms.office.com/pages/responsepage.aspx?id=B1LbIxNmmUuH7QmY_PnleBSX8XFz_RBGvWIH-2OKxrpUM1ZMUE1BQkY0STdTUERDMzRIWE1ENVk0Qi4u
+// @include      https://forms.cloud.microsoft/pages/responsepage.aspx?id=B1LbIxNmmUuH7QmY_PnleBSX8XFz_RBGvWIH-2OKxrpUM1ZMUE1BQkY0STdTUERDMzRIWE1ENVk0Qi4u
+
+
 
 // @downloadURL          http://localhost:3000/funke/abwesenheitsmeldung/main.js
 // @updateURL            http://localhost:3000/funke/abwesenheitsmeldung/main.js

@@ -87,8 +87,8 @@ function formatDate(d, format) {
       
       case 'M': return d.getMonth()+1;
       case 'MM': return ('0'+(d.getMonth()+1)).slice(-2);
-      case 'MMM': return ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'][d.getMonth()];
-      case 'MMMM': return ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'][d.getMonth()];
+      case 'MMM': return ['Jan','Feb','Mï¿½r','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'][d.getMonth()];
+      case 'MMMM': return ['Januar','Februar','Mï¿½rz','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'][d.getMonth()];
       
       case 'yy': return d.getYear() % 100;
       case 'yyyy': return d.getFullYear();
@@ -269,6 +269,7 @@ function blinkElement(el, style, timeout=5000) {
 
 
 function initializeUsageTracking(modes) {
+  if( window != top ) return;
   const PREFIX = 'usage_';
 
   const Modes = modes?.map(m=>({...m})) ??
@@ -335,25 +336,44 @@ function initializeUsageTracking(modes) {
     }, mode.interval*1000);
     currentMode = mode;
   }
+  function alertUsageLimit(stats, style) {
+    const DialogId = 'AnoyingPopup';
+    function createDialog() {
+      const dlg = document.createElement('dialog');
+      dlg.id = DialogId;
+      dlg.addEventListener('close', ()=>{
+        dlg.previousFocus?.focus();
+        dlg.previousFocus = undefined;
+      });
+      dlg.addEventListener('keydown', ()=>dlg.close());
+      dlg.addEventListener('click', ()=>dlg.close());
+      document.body.append(dlg);
+      return dlg;
+    }
+    
+    const dlg = document.getElementById(DialogId) ?? createDialog();
+    dlg.innerHTML = `<p id="time">${formatDate(new Date(), 'time')}</p><p id="message">You have been using this site for <b>${stats.duration}</b> minutes </br> since <b>${formatDate(new Date(stats.start*60*1000), 'datetime')}</b>.</p>`;
+    dlg.previousFocus ??= document.activeElement;
+    dlg.showModal();
+  }
 
   function checkUsageLimits(limit, warn, action) {
     const stats = getUsageStats();
     console.log('usage:', stats);
 
     if( typeof action == 'function' && stats.duration > limit ) {
-      const date = new Date();
+      const now = new Date();
       try {
         action(stats.duration, new Date(stats.minutes*60*1000)); 
       } catch (e) {
         console.error('Usage-monitor: error while executing custom function.', e);
         alert('ERROR: while executing custom function. \n\n'+e);
       }
-      logUsage(date);
+      logUsage(now);
     }
     else if( warn && stats.duration > limit ) {
-      const date = new Date();
-      alert(`You have been using this site for ${stats.duration} minutes since ${new Date(stats.start*60*1000)}`);
-      logUsage(date);
+      alertUsageLimit(stats);
+      logUsage(new Date());
     }
     return stats.duration;
   }

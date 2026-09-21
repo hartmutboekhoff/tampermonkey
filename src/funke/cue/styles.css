@@ -197,6 +197,17 @@ cue-search-filter-date label,
     font-weight: bold !important;
 }
 
+div.GM-selected {
+  background-color: #faf;
+}
+div.GM-selected:hover {
+  background-color: #d8d;
+}
+.selected div.GM-selected:hover {
+  background-color: #d8d;
+}
+
+
 @keyframes pulsar {
   50% {
     transform: scale(120%);

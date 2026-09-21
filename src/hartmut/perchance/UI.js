@@ -2,6 +2,7 @@
   const GM_DownloadButtonId = 'GM_DownloadButton';
   
   function getAllowedSchedule() {
+    //return undefined;
     WorkingHours = [
       {threshold: 0, interval: 60, warn: false},
       {threshold: 15, interval: 60, warn: true},
@@ -99,8 +100,7 @@
   
   window.addEventListener('load',()=>{
     
-    if( location.href.startsWith('https://perchance.org/') )
-      initializeUsageTracking(getAllowedSchedule());
+    initializeUsageTracking(getAllowedSchedule());
     
     window.addEventListener('click', ev=>{
       if( ev.target.nodeName != 'IMG' || ev.target.id == GM_DownloadButtonId ) return;
@@ -182,11 +182,11 @@
       },
       'iframe.text-to-image-plugin-image-iframe~div': {
         callback: el=>{
-          if( location.pathname != '/ai-character-chat' ) return console.log('not showing button in ', location.pathname);
+          if( !['/ai-character-chat', '/aschat', '/norbert-cpg'].includes(location.pathname) ) return console.log('not showing button in ', location.pathname);
           if( el.hasOpenInGeneratorButton ) return;
           const btn3 = document.createElement('button');
-          btn3.setAttribute('style', 'position: relative; top: -15px; cursor: pointer; margin-left: 1rem; background-color:#8ae;');
-          btn3.innerText = 'Generator';
+          btn3.setAttribute('style', 'position: relative; top: -15px; cursor: pointer; margin-left: 1rem; background-color:#23d; color: white;');
+          btn3.innerText = 'more...';
           btn3.onclick = ()=>{
             const url = new URL(btn3.parentElement.previousElementSibling.src);
             const json = JSON.parse(decodeURIComponent(url.hash).slice(1));

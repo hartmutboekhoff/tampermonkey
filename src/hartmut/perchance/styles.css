@@ -23,13 +23,18 @@ attention-wrong-isp div {
 
 
 
+select {
+  outline: 2px solid #88c !important;
+  outline-offset: -2px !important;
+}
 div[contenteditable="true"],
 input[type="text"],
+input:not([type]),
 textarea {
-  outline: 2px solid #88c;
-  outline-offset: -2px;
-  background-color: #fda;
-  color: black;
+  outline: 2px solid #88c !important;
+  outline-offset: -2px !important;
+  background-color: #fda !important;
+  color: black !important;
 }
 div[contenteditable="true"]:focus,
 input[type="text"]:focus,
@@ -84,7 +89,35 @@ iframe.text-to-image-plugin-image-iframe {
   display:block !important;
 }
 
-
 .charCard:has(.nsfwTag) {
   background-color: #800;
 }
+
+
+.prompt2-category-header {
+  background-color: #99f !important;
+}
+
+div.promptModalInnerContainer button.submit {
+  background-color: limegreen !important;
+}
+div.promptModalInnerContainer button.cancel {
+  background-color: #aaa;
+}
+
+.generated-image-container {
+  padding-bottom: 10px;
+}
+
+#userMessagesSentHistoryCtn > div {
+  border: 3px solid #337;
+}
+#userMessagesSentHistoryCtn .historyItem{
+  background-color: #99d;
+}
+#userMessagesSentHistoryCtn .historyItem:hover {
+  background-color: #44a !important;
+  color: white !important;
+  font-weight: bold !important;
+}
+

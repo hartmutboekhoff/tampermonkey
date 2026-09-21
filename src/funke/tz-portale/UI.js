@@ -50,7 +50,27 @@
           }
         }
       }
-    });    
+    });
+    window.onMutation('div.debug-component', {
+      runOnLoad: true,
+      callback: el=>{
+        if( el.GM_done ) return;
+
+        const id = el.querySelector('td.id~td')?.innerText;
+        if( id ) {
+          const idSpan = document.createElement('span');
+          idSpan.innerText = ' '+id;
+          idSpan.className = 'id-hint';
+          idSpan.ondblclick = ()=>navigator.clipboard.writeText(id);
+          
+          const title = el.querySelector('div.show-type > div');
+          if( title ) {
+            title.append(idSpan);
+            el.GM_done = true;
+          }
+        }
+      }
+    })
 
     // ================================================
 

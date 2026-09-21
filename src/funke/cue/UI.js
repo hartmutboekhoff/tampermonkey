@@ -135,7 +135,14 @@ console.log('simulating key', ev.key, ev.code, ev, this);
       sumulate(arguments);
   }
 
-
+  window.addEventListener('click', ev=>{
+    if( ev.altKey ) {
+      const card = ev.target.closest('div[data-testid="content-card"]');
+      if( card ) {
+          card.classList.toggle('GM-selected');
+      }
+    }
+  })
 
 
   function markAsEdited(field) {
