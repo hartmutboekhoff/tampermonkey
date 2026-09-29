@@ -182,7 +182,7 @@
       },
       'iframe.text-to-image-plugin-image-iframe~div': {
         callback: el=>{
-          if( !['/ai-character-chat', '/aschat', '/norbert-cpg'].includes(location.pathname) ) return console.log('not showing button in ', location.pathname);
+          if( !['/ai-character-chat', '/aschat', '/nobbichat'].includes(location.pathname) ) return console.log('not showing button in ', location.pathname);
           if( el.hasOpenInGeneratorButton ) return;
           const btn3 = document.createElement('button');
           btn3.setAttribute('style', 'position: relative; top: -15px; cursor: pointer; margin-left: 1rem; background-color:#23d; color: white;');

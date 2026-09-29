@@ -1,5 +1,9 @@
 /* @printCompiledCss = false */
 
+::selection {
+  background-color: #009 !important;
+  color: white;
+}
 
 ul.context-menu--list {
   background-color: #333 !important;
