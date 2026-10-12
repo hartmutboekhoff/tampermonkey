@@ -157,8 +157,23 @@
     window.registerForReadOut('body>div>textarea', {language: 'en-US'});
     window.registerForReadOut('.thread', {
       exclude: ['.characterEditButton'],
-      extract: node=>node.querySelectorAll('.name, .characterName'),
-      language: 'en-US'
+      extract: node=>node.querySelectorAll('.name, .characterName, .message-count, .image-count'),
+      exclude: ['.characterName span'],
+      language: 'en-US',
+      childElements: {
+        '.message-count': {
+          extract: node=>{
+            const num = parseInt(node.innerText.match(/\d+/));
+            return isNaN(num)? '' : num + ' messages';
+          }
+        },
+        '.image-count': {
+          extract: node=>{
+            const num = parseInt(node.innerText.match(/\d+/));
+            return isNaN(num)? '' : num + ' images';
+          }
+        }
+      }
     });
     window.registerForReadOut('.charCard .body .name, .charCard .body .desc', {language: 'en-US'});
 
@@ -203,6 +218,20 @@
         runOnLoad: true,
         callback: el=>{
           el.checked = true;
+        }
+      },
+      'textarea.paragraph-input[data-name="scratchpad"]': {
+        runOnLoad: true,
+        callback: el=>{
+          if( !el.__GM_hbo_valueSet )
+            window.setTimeout(()=>{
+              console.log('setting scratchpad value?', el.value);
+              if( el.value == '' ) {
+                el.value = 'R=1.1\nREAL=(real photo:[R]), (real-life photo:[R]), (real person:[R]), (real people:[R]), (RAW photo).\nGLOSSY=(gglamorous photo:[R]), (editorialphoto:[R]), (high-fashionphoto:[R]), (fashionphoto:[R]).\n\nAGES={6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|25|30|35|40|45|50|55|60|65|70|75}\nAGES={6|7|8|9|10|11|12}\nA=[AGES.selectOne]\n\nBADGE=((A small blue rectangle in the top right corner shows the number "[A]" in clearly readable white digits.))\n\n//[A=AGES.selectOne,""]\n//in an age-range between [A] and [+A+1]\n';
+                el.__GM_hbo_valueSet = true;
+                console.log('changed scratchpad value', el.value, el.innerText);
+              }
+            }, 1000);
         }
       },
       'textarea.paragraph-input[data-name="description"]': {
@@ -251,6 +280,21 @@
           el.append(createOption(64));
           el.append(createOption(128));
           el.hasExtendedOptions = true;
+        }
+      },
+      '#sensitiveContentVisibilityEl': {
+        runOnStart: true,
+        callback: (el)=>{
+console.log('GM 18+', 'starting');
+          el.value = 'warn';
+          //el.onchange();
+console.log('GM 18+', 'onchanged');
+          const cbx = document.getElementById('ageVerificationCheckboxEl');
+          if( cbx ) {
+            cbx.hidden = false;
+            cbx.checked = true;
+            el.parentElement.nextElementSibling.firstEleemntChild.onclick();
+          }
         }
       }
     });

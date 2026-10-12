@@ -121,3 +121,12 @@ div.promptModalInnerContainer button.cancel {
   font-weight: bold !important;
 }
 
+#changePreferencesLinkEl {
+  font-size: 3em;
+  color: #040;
+  background-color: lightgreen;
+  padding: 1em 2em;
+  border-radius: .4em;
+  
+}
+
