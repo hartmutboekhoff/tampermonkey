@@ -18,7 +18,6 @@ Installed scripts update themselves: Tampermonkey checks for a new version perio
 | Script | Description | Version | |
 |---|---|---|---|
 | Cleverpush | UI Verbesserungen für Cleverpush | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/cleverpush/main.user.js) |
-| Cleverreach | UI Verbesserungen für Cleverreach | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/cleverreach/main.user.js) |
 | CUE | UI Verbesserungen für CUE | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/cue/main.user.js) |
 | dpa Shop | UI Verbesserungen für dpa Shop | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/dpa-shop/main.user.js) |
 | Funke Abwesenheitsmeldung | UI Verbesserungen für Funke Abwesenheitsmeldung | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/abwesenheitsmeldung/main.user.js) |
