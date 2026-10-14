@@ -10,20 +10,20 @@
 
  @include      https://www.quantamagazine.org/*
 
-// @downloadURL          http://localhost:3000/hartmut/quanta-magazine/main.js
-// @updateURL            http://localhost:3000/hartmut/quanta-magazine/main.js
+// @downloadURL          https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/quanta-magazine/main.js
+// @updateURL            https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/quanta-magazine/main.js
 
-// @resource  css-common http://localhost:3000/common/styles.css
-// @resource  css        http://localhost:3000/hartmut/quanta-magazine/styles.css
+// @resource  css-common https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/styles.css
+// @resource  css        https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/quanta-magazine/styles.css
 
-// @require         http://localhost:3000/common/head.js
-// @require         http://localhost:3000/common/utility.js
-// @require         http://localhost:3000/common/styles.js
-// @require         http://localhost:3000/common/KeyHandler.js
-// @require         http://localhost:3000/common/UnifiedSessionStorage.js
-// @require         http://localhost:3000/common/readout.js
+// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/head.js
+// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/utility.js
+// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/styles.js
+// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/KeyHandler.js
+// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/UnifiedSessionStorage.js
+// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/readout.js
 
-// @require         http://localhost:3000/hartmut/quanta-magazine/UI.js
+// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/quanta-magazine/UI.js
 
 // ==/UserScript==
 

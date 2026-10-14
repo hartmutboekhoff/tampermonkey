@@ -1,6 +1,8 @@
 {
   "name": "tampermonkey-script-server",
   "scripts":   {
-    "start": "node dev/bin/www"
+    "start": "node dev/bin/www",
+    "use-github": "node tools/switch-host.js github",
+    "use-local": "node tools/switch-host.js local"
   }
 }
