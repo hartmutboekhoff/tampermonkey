@@ -290,3 +290,21 @@ div[data-testid="issue.views.issue-base.foundation.status.actions-wrapper"]>div>
 div[data-testid="issue.views.issue-base.foundation.status.actions-wrapper"]>div>div button span {
   font-weight: bold;
 }
+
+button[data-testid="issue-meatball-menu.ui.dropdown-trigger.button"] {
+  background-color: #f8f;
+}
+button[data-testid="issue-meatball-menu.ui.dropdown-trigger.button"]:hover {
+  background-color: #f0f;
+}
+div[data-testid="issue.issue-meatball-menu.content"] {
+  background-color: #fcf;
+  outline: 3px solid #f0f;
+  outline-offset: 4px
+  box-shadow: 2px 2px 4px 4px #f8f;
+  
+}
+div[data-testid="issue.issue-meatball-menu.content"] a:hover,
+div[data-testid="issue.issue-meatball-menu.content"] button:hover {
+  background-color: #f8f;
+}
