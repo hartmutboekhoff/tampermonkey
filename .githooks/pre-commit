@@ -1,0 +1,9 @@
+#!/bin/sh
+# Bumps @version of every userscript whose folder (or src/common) has staged changes.
+# Activate once per clone with: npm run hooks
+
+# prefer node.exe on Windows; an extensionless "node" shim may shadow it in sh
+NODE=node
+command -v node.exe >/dev/null 2>&1 && NODE=node.exe
+
+exec "$NODE" tools/bump-versions.js
