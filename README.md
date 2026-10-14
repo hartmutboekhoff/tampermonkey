@@ -60,9 +60,11 @@ The script headers load their files either from GitHub or from the local dev ser
 | `npm run readme` | Regenerate the script list above from the script headers |
 | `npm run hooks` | Activate the git hooks in `.githooks/` (once per clone) |
 
-The `pre-push` hook refuses to push commits whose scripts still reference localhost.
+Git hooks:
+- `pre-commit` increases `@version` in `main.user.js` when a file in that script's folder is staged, and in all scripts when a file in `src/common/` is. A version you changed yourself is left alone. Afterwards the script list above is regenerated and staged.
+- `pre-push` refuses to push commits whose scripts still reference localhost.
 
 Notes:
-- Tampermonkey only installs an update when `@version` increases, so bump it with every change.
+- Tampermonkey only installs an update when `@version` increases. The `pre-commit` hook takes care of that.
 - GitHub caches raw files for about 5 minutes.
 - A new script goes in `src/<group>/<name>/main.user.js`. Copy `src/template/` as a starting point.

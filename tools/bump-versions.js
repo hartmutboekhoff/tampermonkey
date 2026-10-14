@@ -7,7 +7,10 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 
 const git = (args, input) => execFileSync('git', args, { encoding:'utf8', input });
-const tryGit = args => { try { return git(args); } catch { return null; } };
+const tryGit = args => {
+  try { return execFileSync('git', args, { encoding:'utf8', stdio:['ignore', 'pipe', 'ignore'] }); }
+  catch { return null; }
+};
 
 const SCRIPT = 'main.user.js';
 const COMMON = 'src/common/';
@@ -63,7 +66,8 @@ for( const script of [...targets].sort() ) {
   bumped++;
 }
 
-if( bumped && fs.existsSync('README.md') ) {
+// also covers manual bumps and new scripts
+if( (bumped || staged.some(f => f.startsWith('src/'))) && fs.existsSync('README.md') ) {
   execFileSync(process.execPath, [path.join(__dirname, 'build-readme.js')], { stdio:'ignore' });
   git(['add', 'README.md']);
 }
