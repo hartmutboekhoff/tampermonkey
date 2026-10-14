@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name         Konoprogramm
-// @description  UI Verbesserungen für Kinoprogramm in Berlin
+// @name         stackoverflow
+// @description  UI Verbesserungen für stackoverflow.com
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText
@@ -8,13 +8,13 @@
 // @grant        addStyle
 // @grant        unsafeWindow
 
-// @include      https://www.berlin.de/kino/_bin/trefferliste.php*
+// @include      https://stackoverflow.com/*
 
-// @downloadURL          https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/berlin-kino/main.js
-// @updateURL            https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/berlin-kino/main.js
+// @downloadURL          https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/stackoverflow/main.user.js
+// @updateURL            https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/stackoverflow/main.user.js
 
 // @resource  css-common https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/styles.css
-// @resource  css        https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/berlin-kino/styles.css
+// @resource  css        https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/stackoverflow/styles.css
 
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/head.js
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/utility.js
@@ -23,7 +23,7 @@
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/UnifiedSessionStorage.js
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/readout.js
 
-// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/berlin-kino/UI.js
+// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/stackoverflow/UI.js
 
 // ==/UserScript==
 

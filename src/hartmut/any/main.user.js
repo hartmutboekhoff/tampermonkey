@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name         Quanta Magazine
-// @description  UI Verbesserungen für Quanta Magazine
+// @name         Beliebige Seiten
+// @description  UI Verbesserungen für beliebige Seiten
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText
@@ -8,13 +8,13 @@
 // @grant        addStyle
 // @grant        unsafeWindow
 
- @include      https://www.quantamagazine.org/*
+// @include      *
 
-// @downloadURL          https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/quanta-magazine/main.js
-// @updateURL            https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/quanta-magazine/main.js
+// @downloadURL          https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/any/main.user.js
+// @updateURL            https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/any/main.user.js
 
 // @resource  css-common https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/styles.css
-// @resource  css        https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/quanta-magazine/styles.css
+// @resource  css        https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/any/styles.css
 
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/head.js
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/utility.js
@@ -23,9 +23,11 @@
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/UnifiedSessionStorage.js
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/readout.js
 
-// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/quanta-magazine/UI.js
+// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/any/UI.js
 
 // ==/UserScript==
+
+GM_sessionStorage(200);
 
 
 console.log(GM_info.script.name, 'Version '+GM_info.script.version, 'Initialization complete');

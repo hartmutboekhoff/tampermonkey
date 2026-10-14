@@ -40,6 +40,9 @@
 // @grant        unsafeWindow
 // @sandbox      raw
 
+// @downloadURL          https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/tz-portale/main.user.js
+// @updateURL            https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/tz-portale/main.user.js
+
 // @resource  css-common   https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/styles.css
 // @resource  css          https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/tz-portale/styles.css
 

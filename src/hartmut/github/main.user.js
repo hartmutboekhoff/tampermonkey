@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name         Beliebige Seiten
-// @description  UI Verbesserungen für beliebige Seiten
+// @name         github
+// @description  UI Verbesserungen für github
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText
@@ -8,13 +8,14 @@
 // @grant        addStyle
 // @grant        unsafeWindow
 
-// @include      *
+// @include      https://github.com/*
+// @include      https://www.github.com/*
 
-// @downloadURL          https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/any/main.js
-// @updateURL            https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/any/main.js
+// @downloadURL          https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/github/main.user.js
+// @updateURL            https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/github/main.user.js
 
 // @resource  css-common https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/styles.css
-// @resource  css        https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/any/styles.css
+// @resource  css        https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/github/styles.css
 
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/head.js
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/utility.js
@@ -22,12 +23,11 @@
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/KeyHandler.js
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/UnifiedSessionStorage.js
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/readout.js
+// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/mutationHandler.js
 
-// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/any/UI.js
+// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/github/UI.js
 
 // ==/UserScript==
-
-GM_sessionStorage(200);
 
 
 console.log(GM_info.script.name, 'Version '+GM_info.script.version, 'Initialization complete');

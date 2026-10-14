@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name         Microsoft Dokumentation
-// @description  UI Verbesserungen für Microsoft Dokumentation
+// @name         Quanta Magazine
+// @description  UI Verbesserungen für Quanta Magazine
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText
@@ -8,14 +8,13 @@
 // @grant        addStyle
 // @grant        unsafeWindow
 
-// @include      https://vscode-docs.readthedocs.io/*
-// @include      https://*.readthedocs.io/*
+ @include      https://www.quantamagazine.org/*
 
-// @downloadURL          https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/ms-docs/main.js
-// @updateURL            https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/ms-docs/main.js
+// @downloadURL          https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/quanta-magazine/main.user.js
+// @updateURL            https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/quanta-magazine/main.user.js
 
 // @resource  css-common https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/styles.css
-// @resource  css        https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/ms-docs/styles.css
+// @resource  css        https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/quanta-magazine/styles.css
 
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/head.js
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/utility.js
@@ -24,7 +23,7 @@
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/UnifiedSessionStorage.js
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/readout.js
 
-// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/ms-docs/UI.js
+// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/quanta-magazine/UI.js
 
 // ==/UserScript==
 

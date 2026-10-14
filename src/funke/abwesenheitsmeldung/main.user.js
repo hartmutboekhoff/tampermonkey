@@ -1,6 +1,7 @@
+
 // ==UserScript==
-// @name         JIRA Cloud
-// @description  UI Verbesserungen für JIRA Cloud
+// @name         Funke Abwesenheitsmeldung
+// @description  UI Verbesserungen für Funke Abwesenheitsmeldung
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText
@@ -8,13 +9,16 @@
 // @grant        addStyle
 // @grant        unsafeWindow
 
-// @include      https://funkemedien.atlassian.net/*
+// @include      https://forms.office.com/pages/responsepage.aspx?id=B1LbIxNmmUuH7QmY_PnleBSX8XFz_RBGvWIH-2OKxrpUM1ZMUE1BQkY0STdTUERDMzRIWE1ENVk0Qi4u
+// @include      https://forms.cloud.microsoft/pages/responsepage.aspx?id=B1LbIxNmmUuH7QmY_PnleBSX8XFz_RBGvWIH-2OKxrpUM1ZMUE1BQkY0STdTUERDMzRIWE1ENVk0Qi4u
 
-// @downloadURL          https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/jira-cloud/main.js
-// @updateURL            https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/jira-cloud/main.js
+
+
+// @downloadURL          https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/abwesenheitsmeldung/main.user.js
+// @updateURL            https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/abwesenheitsmeldung/main.user.js
 
 // @resource  css-common https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/styles.css
-// @resource  css        https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/jira-cloud/styles.css
+// @resource  css        https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/abwesenheitsmeldung/styles.css
 
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/head.js
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/utility.js
@@ -24,7 +28,7 @@
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/readout.js
 // @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/mutationHandler.js
 
-// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/jira-cloud/UI.js
+// @require         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/abwesenheitsmeldung/UI.js
 
 // ==/UserScript==
 

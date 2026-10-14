@@ -15,8 +15,8 @@
 
 
 
-// @downloadURL           https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/sap/main.js
-// @updateURL             https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/sap/main.js
+// @downloadURL           https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/sap/main.user.js
+// @updateURL             https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/sap/main.user.js
 // @resource  css-common  https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/styles.css
 // @resource  css         https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/sap/styles.css
 

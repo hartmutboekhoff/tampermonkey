@@ -15,8 +15,8 @@
 // @include         https://helpline.funkemedien.de/WebDesk/Task/TaskDialog?*
 // @include         https://helpline.funkemedien.de/auth/*
 
-// @downloadURL            https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/helpdesk/main.js
-// @updateURL              https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/helpdesk/main.js
+// @downloadURL            https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/helpdesk/main.user.js
+// @updateURL              https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/helpdesk/main.user.js
 // @resource  css-common   https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/common/styles.css
 // @resource  css          https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/helpdesk/styles.css
 

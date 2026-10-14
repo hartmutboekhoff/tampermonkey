@@ -1,0 +1,22 @@
+#!/bin/sh
+# Refuses to push if a script in src/ still points at the local dev server.
+# Activate once per clone with: npm run hooks
+
+status=0
+
+while read local_ref local_sha remote_ref remote_sha; do
+  case "$local_sha" in *[!0]*) ;; *) continue ;; esac   # branch deletion
+
+  hits=$(git grep -l 'localhost:3000' "$local_sha" -- src | sed "s/^$local_sha://")
+  if [ -n "$hits" ]; then
+    echo "pre-push: $local_ref still references localhost:3000 in:" >&2
+    echo "$hits" | sed 's/^/  /' >&2
+    status=1
+  fi
+done
+
+if [ $status -ne 0 ]; then
+  echo >&2
+  echo "Run 'npm run use-github', commit, and push again." >&2
+fi
+exit $status
