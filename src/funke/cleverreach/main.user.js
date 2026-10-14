@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Cleverreach
-// @description  UI Verbesserungen für Cleverreach
+// @description  UI Verbesserungen fÃ¼r Cleverreach
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText

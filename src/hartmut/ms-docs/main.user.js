@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Microsoft Dokumentation
-// @description  UI Verbesserungen für Microsoft Dokumentation
+// @description  UI Verbesserungen fÃ¼r Microsoft Dokumentation
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText

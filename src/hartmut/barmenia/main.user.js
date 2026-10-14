@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Barmenia
-// @description  UI Verbesserungen für meine barmenia Portal
+// @description  UI Verbesserungen fÃ¼r meine barmenia Portal
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText

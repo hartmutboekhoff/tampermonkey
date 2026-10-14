@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         amazon
-// @description  UI Verbesserungen für amazon
+// @description  UI Verbesserungen fÃ¼r amazon
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText

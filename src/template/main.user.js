@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Vorlage
-// @description  UI Verbesserungen für Vorlage
+// @description  UI Verbesserungen fÃ¼r Vorlage
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText

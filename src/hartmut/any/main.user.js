@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Beliebige Seiten
-// @description  UI Verbesserungen für beliebige Seiten
+// @description  UI Verbesserungen fÃ¼r beliebige Seiten
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText

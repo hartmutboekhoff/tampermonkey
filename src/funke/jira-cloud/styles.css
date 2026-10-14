@@ -38,8 +38,8 @@ div[data-editor-container-id="issue-description-editor"] {
 }
 
 /*zusatzfeld */   div:has(>div>div>div[data-component-selector="jira.issue-view.common.inline-edit.compact-wrapper-control"]), 
-/*Anhänge*/       div:has(>div[data-testid="issue.views.issue-base.content.attachment.panel"]),
-/*Verknüpfungen*/ div:has(>div>div>span[data-testid="issue.views.issue-base.content.issue-links.add.add-button.right-side-container"]),
+/*AnhÃ¤nge*/       div:has(>div[data-testid="issue.views.issue-base.content.attachment.panel"]),
+/*VerknÃ¼pfungen*/ div:has(>div>div>span[data-testid="issue.views.issue-base.content.issue-links.add.add-button.right-side-container"]),
 /*Subtickets */   div:has(>div[data-testid="issue.issue-view.views.common.child-issues-panel.issues-container"]),
 /*Komponenten */  div:has(>div[data-testid="issue.views.field.select.common.select-inline-edit.components"]),
 /*kommentare */   div[data-testid="issue.activity.comments-list"] > div {
@@ -65,14 +65,14 @@ div:has(>div[data-testid="issue.views.field.select.common.select-inline-edit.com
 }
 
 
-/* Überschriften */
+/* Ãœberschriften */
 /*Zusatzfelder   */
 div:has(>div>div>div[data-component-selector="jira.issue-view.common.inline-edit.compact-wrapper-control"]) > div:first-child:has(h2),
 div:has(>div>div>div[data-component-selector="jira.issue-view.common.inline-edit.compact-wrapper-control"]) > div:has(>h2),
 div:has(>div>div>div[data-component-selector="jira.issue-view.common.inline-edit.compact-wrapper-control"]) > div:has(>div>h2),
-/*Anhänge*/         div:has(>div[data-testid="issue.views.issue-base.content.attachment.panel"]) div div:has(h2),
+/*AnhÃ¤nge*/         div:has(>div[data-testid="issue.views.issue-base.content.attachment.panel"]) div div:has(h2),
 /*Subtickets */     div:has(>div[data-testid="issue.issue-view.views.common.child-issues-panel.issues-container"]) > div:has(h2),
-/*Verknüpfungen*/   div:has(>div>div>span[data-testid="issue.views.issue-base.content.issue-links.add.add-button.right-side-container"]) div:has(h2) {
+/*VerknÃ¼pfungen*/   div:has(>div>div>span[data-testid="issue.views.issue-base.content.issue-links.add.add-button.right-side-container"]) div:has(h2) {
   background-color: var(--legend-background-color);
 }
 

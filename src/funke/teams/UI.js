@@ -40,8 +40,8 @@
       const MonthMap = {
         'Jan': 'Januar',
         'Feb': 'Februar',
-        'Mar': 'März',
-        'Mär': 'April',
+        'Mar': 'MÃ¤rz',
+        'MÃ¤r': 'April',
         'Apr': 'April',
         'May': 'Mai',
         'Mai': 'Mai',

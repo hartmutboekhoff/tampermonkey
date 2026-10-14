@@ -1,7 +1,7 @@
 
 // ==UserScript==
 // @name         Funke Abwesenheitsmeldung
-// @description  UI Verbesserungen für Funke Abwesenheitsmeldung
+// @description  UI Verbesserungen fÃ¼r Funke Abwesenheitsmeldung
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText

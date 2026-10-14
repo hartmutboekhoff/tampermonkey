@@ -35,7 +35,7 @@
             {pattern:'nrw-wp', replacement:'WP'},
             {pattern:'nrw-wr', replacement:'WR'},
             {pattern:'nrw-ikz', replacement:'IKZ'},
-            {pattern:'mgt-ta', replacement:'Thüringer Allgemeine'},
+            {pattern:'mgt-ta', replacement:'ThÃ¼ringer Allgemeine'},
             {pattern:'mgt-otz', replacement:'OTZ'},
             {pattern:'mgt-tlz', replacement:'TLZ'},
           ]

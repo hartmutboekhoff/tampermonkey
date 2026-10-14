@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         dpa Shop
-// @description  UI Verbesserungen für dpa Shop
+// @description  UI Verbesserungen fÃ¼r dpa Shop
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText

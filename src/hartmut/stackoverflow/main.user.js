@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         stackoverflow
-// @description  UI Verbesserungen für stackoverflow.com
+// @description  UI Verbesserungen fÃ¼r stackoverflow.com
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText

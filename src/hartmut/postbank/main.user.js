@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Postbank 
-// @description  UI Verbesserungen für Postbank
+// @description  UI Verbesserungen fÃ¼r Postbank
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText

@@ -30,11 +30,10 @@ function* walk(dir) {
 
 let changed = 0;
 for( const file of walk(SRC) ) {
-  // latin1 keeps every byte as-is, so non-UTF-8 files survive the round trip
-  const text = fs.readFileSync(file, 'latin1');
+  const text = fs.readFileSync(file, 'utf8');
   const updated = text.replace(HEADER, header => header.split(from).join(to));
   if( updated !== text ) {
-    fs.writeFileSync(file, updated, 'latin1');
+    fs.writeFileSync(file, updated, 'utf8');
     console.log('  ' + path.relative(SRC, file));
     changed++;
   }

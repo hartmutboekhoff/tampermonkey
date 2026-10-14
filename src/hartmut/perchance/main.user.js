@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Perchance
-// @description  UI Verbesserungen für Perchance
+// @description  UI Verbesserungen fÃ¼r Perchance
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText

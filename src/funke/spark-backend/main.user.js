@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SPARK Backend
-// @description  UI Verbesserungen für SPARK Backend
+// @description  UI Verbesserungen fÃ¼r SPARK Backend
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText

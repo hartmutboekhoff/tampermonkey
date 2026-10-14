@@ -12,14 +12,8 @@ const START = '<!-- scripts:start -->';
 const END = '<!-- scripts:end -->';
 const SKIP = ['template'];
 
-// most sources are latin1, some utf-8
-function decode(buffer) {
-  try { return new TextDecoder('utf-8', { fatal:true }).decode(buffer); }
-  catch { return buffer.toString('latin1'); }
-}
-
 function readHeader(file) {
-  const text = decode(fs.readFileSync(file));
+  const text = fs.readFileSync(file, 'utf8');
   const header = (text.match(/\/\/ ==UserScript==([\s\S]*?)\/\/ ==\/UserScript==/) || [])[1] || '';
   const value = key => ((header.match(new RegExp('^// @' + key + '\\s+(.*)$', 'm')) || [])[1] || '').trim();
   return { name:value('name'), description:value('description'), version:value('version') };

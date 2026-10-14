@@ -125,7 +125,7 @@
     window.registerForReadOut('[contenteditable="true"]');
 
     window.registerForReadOut('.tabControlHeader span', {language});
-    // Zeile im Reiter für reservierte Aufgaben.
+    // Zeile im Reiter fÃ¼r reservierte Aufgaben.
     window.registerForReadOut('div.jqx-grid-cell.jqx-item', {language});
     window.registerForReadOut('div#contenttableHLGrid>div', {language});
     // Process-Liste
@@ -175,13 +175,13 @@
 
     // ================================================
     //  Umlaute werden wie folgt codiert:
-    //     Ä: \xc4
-    //     Ö: \xd6
-    //     Ü: \xdc
-    //     ä: \xe4
-    //     ö: \xf6
-    //     ü: \xfc
-    //     ß: \xdf
+    //     Ã„: \xc4
+    //     Ã–: \xd6
+    //     Ãœ: \xdc
+    //     Ã¤: \xe4
+    //     Ã¶: \xf6
+    //     Ã¼: \xfc
+    //     ÃŸ: \xdf
 
     console.log('initializing mutation-reactions');
     window.onMutation({

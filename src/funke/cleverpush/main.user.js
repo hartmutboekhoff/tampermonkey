@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Cleverpush
-// @description  UI Verbesserungen für Cleverpush
+// @description  UI Verbesserungen fÃ¼r Cleverpush
 // @version      1
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText
