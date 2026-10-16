@@ -243,9 +243,9 @@
           if( now - json.timeIndex < 10000 && json.prompt && json.prompt != '' )
             window.setTimeout(()=>{
               if( !json.negativePrompt && json.negativePrompt != '' )
-                el.value = `${json.prompt} \n(negativePrompt:::${json.negativePrompt})`;
+                el.value = `${json.prompt.replaceAll('. ', '.\n\n')} \n\n(negativePrompt:::${json.negativePrompt})\n\n`;
               else
-                el.value = `${json.prompt}`;
+                el.value = `${json.prompt.replaceAll('. ', '.\n\n')}\n\n`;
             }, 1000);
         }
       },

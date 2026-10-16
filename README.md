@@ -36,11 +36,11 @@ Installed scripts update themselves: Tampermonkey checks for a new version perio
 |---|---|---|---|
 | amazon | UI Verbesserungen für amazon | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/amazon/main.user.js) |
 | Barmenia | UI Verbesserungen für meine barmenia Portal | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/barmenia/main.user.js) |
-| Beliebige Seiten | UI Verbesserungen für beliebige Seiten | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/any/main.user.js) |
+| Beliebige Seiten | UI Verbesserungen für beliebige Seiten | 2 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/any/main.user.js) |
 | github | UI Verbesserungen für github | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/github/main.user.js) |
-| Konoprogramm | UI Verbesserungen für Kinoprogramm in Berlin | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/berlin-kino/main.user.js) |
+| Kinoprogramm | UI Verbesserungen für Kinoprogramm in Berlin | 2 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/berlin-kino/main.user.js) |
 | Microsoft Dokumentation | UI Verbesserungen für Microsoft Dokumentation | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/ms-docs/main.user.js) |
-| Perchance | UI Verbesserungen für Perchance | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/perchance/main.user.js) |
+| Perchance | UI Verbesserungen für Perchance | 2 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/perchance/main.user.js) |
 | Postbank | UI Verbesserungen für Postbank | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/postbank/main.user.js) |
 | Quanta Magazine | UI Verbesserungen für Quanta Magazine | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/quanta-magazine/main.user.js) |
 | stackoverflow | UI Verbesserungen für stackoverflow.com | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/stackoverflow/main.user.js) |
