@@ -18,7 +18,7 @@ Installed scripts update themselves: Tampermonkey checks for a new version perio
 | Script | Description | Version | |
 |---|---|---|---|
 | Cleverpush | UI Verbesserungen für Cleverpush | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/cleverpush/main.user.js) |
-| CUE | UI Verbesserungen für CUE | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/cue/main.user.js) |
+| CUE | UI Verbesserungen für CUE | 2 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/cue/main.user.js) |
 | dpa Shop | UI Verbesserungen für dpa Shop | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/dpa-shop/main.user.js) |
 | Funke Abwesenheitsmeldung | UI Verbesserungen für Funke Abwesenheitsmeldung | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/abwesenheitsmeldung/main.user.js) |
 | Funke Intranet | UI Verbesserungen für Funke Intranet | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/funke/intranet/main.user.js) |
@@ -37,7 +37,7 @@ Installed scripts update themselves: Tampermonkey checks for a new version perio
 | amazon | UI Verbesserungen für amazon | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/amazon/main.user.js) |
 | Barmenia | UI Verbesserungen für meine barmenia Portal | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/barmenia/main.user.js) |
 | Beliebige Seiten | UI Verbesserungen für beliebige Seiten | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/any/main.user.js) |
-| github | UI Verbesserungen für github | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/github/main.user.js) |
+| github | UI Verbesserungen für github | 2 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/github/main.user.js) |
 | Konoprogramm | UI Verbesserungen für Kinoprogramm in Berlin | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/berlin-kino/main.user.js) |
 | Microsoft Dokumentation | UI Verbesserungen für Microsoft Dokumentation | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/ms-docs/main.user.js) |
 | Perchance | UI Verbesserungen für Perchance | 1 | [Install / update](https://raw.githubusercontent.com/hartmutboekhoff/tampermonkey/version-2/src/hartmut/perchance/main.user.js) |

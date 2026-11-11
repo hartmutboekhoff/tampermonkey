@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CUE
 // @description  UI Verbesserungen für CUE  
-// @version      1
+// @version      2
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText
 // @grant        GM_info

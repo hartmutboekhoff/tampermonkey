@@ -11,6 +11,15 @@
     console.log('initializing read-out elements');
     //window.registerForReadOut('selector');
     window.registerForReadOut('.review-comment task-lists',{language:'de-DE'});
+    window.registerForReadOut('[data-component="text"]',{language:'de-DE'});
+    window.registerForReadOut('div[data-component="PageHeader.Description"] div[class*="summaryContainer"]', {
+      language:'de-DE',
+      replace: {
+        pattern: /\buat\b/i,
+        replacement: 'U A T ',
+      },
+      exclude: '[data-component="Tooltip"]'
+    });
     
 
     // ================================================

@@ -210,6 +210,21 @@ div.GM-selected:hover {
 .selected div.GM-selected:hover {
   background-color: #d8d;
 }
+span.cca_inline_story_relation {
+  margin-left: 1em;
+  margin-right: 1em;
+  : 
+}
+span.cca_inline_story_relation:before {
+  content: "\27A1";
+  display:inline-block;
+  background-color: blue;
+  color: white;
+  height: 1.1em;
+  width: 1.1em;
+  margin: 2px .5em 2px 2px;
+  border-radius: 3px;
+}
 
 
 @keyframes pulsar {
