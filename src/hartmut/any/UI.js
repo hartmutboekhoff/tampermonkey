@@ -50,6 +50,9 @@
       dlg.showModal();
     });
   }
+  function speakTime() {
+    window.ReadOut.read(formatDate(new Date(), 'time'));
+  }
   
   
   window.addEventListener('load',()=>{
@@ -58,6 +61,7 @@
     console.log('initializing shortcut-keys');
     //window.addKeyHandler('Space',ev=>alert('key pressed'));
     window.addKeyHandler('Alt+KeyL', selectLanguage, {excludeFormFields:false});
+    window.addKeyHandler('F1', speakTime, {excludeFormFields:false});
   
   
     // ================================================

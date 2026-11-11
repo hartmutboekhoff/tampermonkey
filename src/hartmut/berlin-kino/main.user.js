@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         Konoprogramm
+// @name         Kinoprogramm
 // @description  UI Verbesserungen für Kinoprogramm in Berlin
-// @version      1
+// @version      2
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText
 // @grant        GM_info
