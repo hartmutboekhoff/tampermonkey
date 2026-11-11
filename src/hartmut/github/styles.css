@@ -15,6 +15,7 @@ button.Button--secondary {
 
 ul[class*="prc-UnderlineNav-ItemsList"] {
   background-color: #f8f;
+  padding-top: 2px;
 }
 li a[data-tab-item="pull-requests"] {
   background-color: #828;

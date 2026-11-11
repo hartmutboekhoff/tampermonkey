@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         github
 // @description  UI Verbesserungen für github
-// @version      2
+// @version      3
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText
 // @grant        GM_info

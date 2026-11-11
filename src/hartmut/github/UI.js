@@ -16,7 +16,7 @@
       language:'de-DE',
       replace: {
         pattern: /\buat\b/i,
-        replacement: 'U A T ',
+        replacement: 'U-A-T',
       },
       exclude: '[data-component="Tooltip"]'
     });
