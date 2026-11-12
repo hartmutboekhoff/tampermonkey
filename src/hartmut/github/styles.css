@@ -66,3 +66,7 @@ form[action$="/undo_cleanup"] > button.pull-request-ref-restore-text {
 div[data-component="PageHeader.Description"] div[class*="summaryContainer"] {
   background-color: yellow;
 }
+
+button[data-dd-action-name*="lifecycle"] {
+  @neutral-button;
+}

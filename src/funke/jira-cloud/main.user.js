@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JIRA Cloud
 // @description  UI Verbesserungen für JIRA Cloud
-// @version      1
+// @version      2
 // @grant        GM_getResourceURL
 // @grant        GM_getResourceText
 // @grant        GM_info

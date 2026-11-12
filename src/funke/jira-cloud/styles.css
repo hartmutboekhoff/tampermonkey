@@ -180,12 +180,17 @@ div[data-testid="jql-builder"] {
 div[data-testid="issue.views.issue-base.context.labels"]:has(div[data-testid="issue-field-heading-styled-field-heading.labels"]) {
   @field-outline;
   outline-color: var(--special-border-color);
+  background-color: var(--special-border-color);
   padding: .2em;
 } 
 div[data-testid="issue.views.issue-base.context.labels"] div[data-testid="issue-field-heading-styled-field-heading.labels"]:has(>h2) {
   _background-color: var(--legend-background-color);
   background-color: var(--special-dark-background-color);
 } 
+div[data-testid="issue.views.issue-base.context.labels"]:has(div[data-testid="issue-field-heading-styled-field-heading.labels"]) li > span > span > span {
+  background-color: #6b6;
+  padding: 5px;
+}
 
 div[data-testid="issue.views.field.checkbox-inline-edit.customfield_10201"] {
   background-color: var(--editor-background-color);

@@ -52,7 +52,11 @@
       }
     });
     window.registerForReadOut('div[data-testid="issue.issue-view.views.common.child-issues-panel.issues-container"] ul>div',{
-      exclude: ['img', 'div[data-testid="issue-line-card.ui.estimate.estimate-field"]']
+      exclude: [
+        'img', 
+        'div[data-testid="issue-line-card.ui.estimate.estimate-field"]', 
+        'button[data-testid="issue-field-single-line-text-readview-card.ui.single-line-text.container.icon-button"]'
+      ]
     });
     window.registerForReadOut('li[data-testid="issue-navigator.ui.issue-results.detail-view.card-list.card.list-item"]', {
       exclude: ['img', 'div[role]']
